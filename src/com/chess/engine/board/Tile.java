@@ -1,3 +1,7 @@
+package com.chess.engine.board;
+
+import com.chess.engine.piece.Piece;
+
 public abstract class Tile {
     int tileCoordinate;
 
@@ -9,7 +13,7 @@ public abstract class Tile {
 
     public abstract Piece getPiece();
 
-    public static final class EmptyTile extends Tile{
+    public static final class EmptyTile extends Tile {
         EmptyTile(int coordinate) {
             super(coordinate);
         }
