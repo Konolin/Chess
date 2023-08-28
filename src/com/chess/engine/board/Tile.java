@@ -1,11 +1,30 @@
 package com.chess.engine.board;
 
 import com.chess.engine.piece.Piece;
+import com.google.common.collect.ImmutableMap;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Tile {
-    int tileCoordinate;
+    protected final int tileCoordinate;
+    private static final Map<Integer, EmptyTile> EMPTY_TILES = createAllPossibleEmptyTiles();
 
-    Tile(int tileCoordinate) {
+    private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
+        final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
+
+        for (int i = 0; i < 64; i++) {
+            emptyTileMap.put(i, new EmptyTile(i));
+        }
+
+        return ImmutableMap.copyOf(emptyTileMap);
+    }
+
+    public static Tile createTile(final int tileCoordinate, final Piece piece) {
+        return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES.get(tileCoordinate);
+    }
+
+    private Tile(final int tileCoordinate) {
         this.tileCoordinate = tileCoordinate;
     }
 
@@ -14,8 +33,8 @@ public abstract class Tile {
     public abstract Piece getPiece();
 
     public static final class EmptyTile extends Tile {
-        EmptyTile(int coordinate) {
-            super(coordinate);
+        EmptyTile(final int tileCoordinate) {
+            super(tileCoordinate);
         }
 
         @Override
@@ -30,10 +49,10 @@ public abstract class Tile {
     }
 
     public static final class OccupiedTile extends Tile {
-        Piece pieceOnTile;
+        private final Piece pieceOnTile;
 
-        OccupiedTile(int coordinate, Piece pieceOnTile) {
-            super(coordinate);
+        OccupiedTile(final int tileCoordinate, final Piece pieceOnTile) {
+            super(tileCoordinate);
             this.pieceOnTile = pieceOnTile;
         }
 
