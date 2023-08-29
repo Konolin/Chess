@@ -25,12 +25,15 @@ public class Bishop extends Piece {
         for (final int candidateCoordinateOffset : CANDIDATE_MOVES_VECTOR_COORDINATES) {
             int candidateDestinationCoordinate = this.piecePosition;
 
+            // while next position is in-bounds
             while (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
+                // jump over the cases where not all vectors are valid
                 if(isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset) ||
                         isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
                     break;
                 }
 
+                // calculate next position, check if in-bounds and decide the move type
                 candidateDestinationCoordinate += candidateCoordinateOffset;
                 if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
@@ -44,7 +47,7 @@ public class Bishop extends Piece {
                         if (this.pieceAlliance != pieceAlliance) {
                             legalMoves.add(new Move.AtackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
-                        break;
+                        break; // stop bishop from moving further after capturing or being blocked by another piece
                     }
                 }
             }

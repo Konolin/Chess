@@ -1,5 +1,7 @@
 package com.chess.engine.board;
 
+import jdk.jfr.Description;
+
 public class BoardUtils {
     public static final boolean[] FIRST_COLUMN = initColumn(0);
     public static final boolean[] SECOND_COLUMN = initColumn(1);
@@ -13,6 +15,7 @@ public class BoardUtils {
         throw new RuntimeException("You cannot instantiate me!");
     }
 
+    // Sets the corresponding values of a column to true
     private static boolean[] initColumn(int columnNumber) {
         final boolean[] column = new boolean[NUM_TILES];
         do {
@@ -22,6 +25,7 @@ public class BoardUtils {
         return column;
     }
 
+    // check if the coordinate is not out of bounds
     public static boolean isValidCoordinate(final int coordinate) {
         return coordinate >= 0 && coordinate < NUM_TILES;
     }
