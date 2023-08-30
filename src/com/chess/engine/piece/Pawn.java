@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class Pawn extends Piece {
-    private final static int[] CANDIDATE_MOVE_COORDINATE = {8, 16};
+    private final static int[] CANDIDATE_MOVE_COORDINATE = {7, 8, 9, 16};
 
     Pawn(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
@@ -28,9 +28,11 @@ public class Pawn extends Piece {
                 continue;
             }
 
+            // normal move
             if (currentCandidateOffset == 8 && !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                 // TODO - more work here (promotions)
                 legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                // pawn jump (moves 2 squares on the first move)
             } else if (currentCandidateOffset == 16 && this.isFirstMove() &&
                     (BoardUtils.SECOND_ROW[this.piecePosition] && this.getPieceAlliance().isBlack()) ||
                     (BoardUtils.SEVENTH_ROW[this.piecePosition] && this.getPieceAlliance().isWhite())) {
@@ -41,9 +43,31 @@ public class Pawn extends Piece {
                     // TODO - more work here
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 }
+                // capture cases and exceptions to the rules (pawns on the 1st and 8th column)
+            } else if (currentCandidateOffset == 7 &&
+                    !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite()) ||
+                            (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack()))) {
+                if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+                    final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
+
+                    if(this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
+                        // TODO atack move + atack in pawn promotion
+                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    }
+                }
+            } else if (currentCandidateOffset == 9 &&
+                    !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack()) ||
+                            (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite()))) {
+                if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+                    final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
+
+                    if(this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
+                        // TODO atack move + atack in pawn promotion
+                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    }
+                }
             }
         }
-
         return ImmutableList.copyOf(legalMoves);
     }
 }
