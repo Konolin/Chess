@@ -44,8 +44,8 @@ public abstract class Player {
         return ImmutableList.copyOf(attackMoves);
     }
 
+    // check is there is a king on the current board and returns him
     private King establishKing() {
-        // check is there is a king on the current board and returns him
         for (final Piece piece : getActivePieces()) {
             if (piece.getPieceType().isKing()) {
                 return (King) piece;
@@ -76,8 +76,8 @@ public abstract class Player {
     }
 
     protected boolean hasEscapeMoves() {
-        // go through every possible playerMove and make them on an imaginary board
-        // after we make the move we check if the move is possible (not in check/ in bounds)
+        // goes through every possible playerMove and makes them on an imaginary board
+        // after a move is made, it checks if the move is possible (doesn't result in check)
         for (final Move move : this.legalMoves) {
             final MoveTransition transition = makeMove(move);
             if (transition.getMoveStatus().isDone()) {

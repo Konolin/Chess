@@ -25,29 +25,31 @@ public class Bishop extends Piece {
         for (final int candidateCoordinateOffset : CANDIDATE_MOVES_VECTOR_COORDINATES) {
             int candidateDestinationCoordinate = this.piecePosition;
 
-            // while next position is in-bounds
+            // while candidate destination is in-bounds
             while (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                // jump over the cases where not all vectors are valid
-                if(isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset) ||
+                // jump over the cases where the candidate vectors are not valid
+                if (isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset) ||
                         isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
                     break;
                 }
 
-                // calculate next position, check if in-bounds and decide the move type
+                // calculate next candidate destination, check if it's in-bounds and decide the move type
                 candidateDestinationCoordinate += candidateCoordinateOffset;
                 if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
 
                     if (!candidateDestinationTile.isTileOccupied()) {
+                        // make normal move
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                     } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                         if (this.pieceAlliance != pieceAlliance) {
+                            // make attacking move if next tile is occupied by opponent piece
                             legalMoves.add(new Move.AtackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
-                        break; // stop bishop from moving further after capturing or being blocked by another piece
+                        break; // stop bishop from moving further after capturing or being blocked by friendly piece
                     }
                 }
             }

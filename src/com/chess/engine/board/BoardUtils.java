@@ -17,8 +17,8 @@ public class BoardUtils {
         throw new RuntimeException("You cannot instantiate me!");
     }
 
-    // Sets the corresponding values of a column to true
     private static boolean[] initColumn(int columnNumber) {
+        // Sets the corresponding values of a column to true
         final boolean[] column = new boolean[NUM_TILES];
         do {
             column[columnNumber] = true;

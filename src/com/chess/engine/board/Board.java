@@ -6,6 +6,7 @@ import com.chess.engine.player.BlackPlayer;
 import com.chess.engine.player.Player;
 import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
+import jdk.jfr.Description;
 
 import java.util.*;
 
@@ -64,6 +65,7 @@ public class Board {
         return this.blackPieces;
     }
 
+    // returns the legal moves of every piece in a collection
     private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
         final List<Move> legalMoves = new ArrayList<>();
         for (final Piece piece : pieces) {
@@ -72,6 +74,7 @@ public class Board {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    // returns all pieces from the board that have the specified alliance
     private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard, final Alliance alliance) {
         final List<Piece> activePieces = new ArrayList<>();
         for (final Tile tile : gameBoard) {
@@ -144,6 +147,7 @@ public class Board {
         return builder.build();
     }
 
+    // builder for the board configuration
     public static class Builder {
         Map<Integer, Piece> boardConfig;
         Alliance nextMoveMaker;

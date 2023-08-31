@@ -14,7 +14,7 @@ public abstract class Move {
     }
 
     public int getDestinationCoordinate() {
-        return  this.destinationCoordinate;
+        return this.destinationCoordinate;
     }
 
     public abstract Board execute();

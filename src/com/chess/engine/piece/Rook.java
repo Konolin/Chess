@@ -27,7 +27,7 @@ public class Rook extends Piece {
 
             // while next position is in-bounds
             while (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                // jump over the cases where not all vectors are valid
+                // jump over the cases where the destination offset vector is not valid
                 if (isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset) ||
                         isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
                     break;
@@ -39,12 +39,14 @@ public class Rook extends Piece {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
 
                     if (!candidateDestinationTile.isTileOccupied()) {
+                        // make normal move
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                     } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                         if (this.pieceAlliance != pieceAlliance) {
+                            // make attacking move if next tile is occupied by opponent piece
                             legalMoves.add(new Move.AtackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
                         break; // stop rook from moving further after capturing or being blocked by another piece

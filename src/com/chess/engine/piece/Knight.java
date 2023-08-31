@@ -25,8 +25,8 @@ public class Knight extends Piece {
         for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
             int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
 
-            // jump over the cases where not all offsets are valid
             if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
+                // jump over the cases where the candidate offset is not valid
                 if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                         isSecondColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                         isSeventhColumnExclusion(this.piecePosition, currentCandidateOffset) ||
@@ -34,15 +34,16 @@ public class Knight extends Piece {
                     continue;
                 }
 
-                // calculate next position and decide the move type
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                 if (!candidateDestinationTile.isTileOccupied()) {
+                    // make normal move
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 } else {
                     final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                     if (this.pieceAlliance != pieceAlliance) {
+                        // make attacking move if next tile is occupied by opponent piece
                         legalMoves.add(new Move.AtackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
                 }

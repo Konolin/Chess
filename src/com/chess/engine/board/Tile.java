@@ -18,6 +18,8 @@ public abstract class Tile {
         return ImmutableMap.copyOf(emptyTileMap);
     }
 
+    // if a piece is given as input => an occupied tile is created
+    // else an empty tile is returned form the cache
     public static Tile createTile(final int tileCoordinate, final Piece piece) {
         return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES_CACHE.get(tileCoordinate);
     }
@@ -59,10 +61,10 @@ public abstract class Tile {
             this.pieceOnTile = pieceOnTile;
         }
 
-        // black pieces => lower case
-        // white pieces => upper case
         @Override
         public String toString() {
+            // black pieces <=> lower case
+            // white pieces <=> upper case
             return getPiece().getPieceAlliance().isBlack() ? getPiece().toString().toLowerCase() : getPiece().toString();
         }
 
