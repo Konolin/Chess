@@ -17,6 +17,10 @@ public abstract class Move {
         return this.destinationCoordinate;
     }
 
+    public Piece getMovedPiece() {
+        return this.movedPiece;
+    }
+
     public abstract Board execute();
 
     // a piece is moved to an empty tile
@@ -41,8 +45,8 @@ public abstract class Move {
                 builder.setPiece(piece);
             }
 
-            // set moved piece
-            builder.setPiece(null);
+            // move the moved piece
+            builder.setPiece(this.movedPiece.movePiece(this));
             builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
 
             // build the new board and return it
