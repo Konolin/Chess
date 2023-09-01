@@ -27,8 +27,26 @@ public abstract class Move {
 
         @Override
         public Board execute() {
-            return null;
-            // TODO
+            final Board.Builder builder = new Board.Builder();
+
+            // place all pieces of the current player on the new board, except for the moved piece
+            for(final Piece piece : this.board.currentPlayer().getActivePieces()) {
+                if (!this.movedPiece.equals(piece)) { // TODO hashcode and equals for pieces
+                    builder.setPiece(piece);
+                }
+            }
+
+            // place all pieces of the opponent on the new board
+            for(final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
+                builder.setPiece(piece);
+            }
+
+            // set moved piece
+            builder.setPiece(null);
+            builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+
+            // build the new board and return it
+            return builder.build();
         }
     }
 
