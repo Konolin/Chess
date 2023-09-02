@@ -47,7 +47,7 @@ public class Bishop extends Piece {
 
                         if (this.pieceAlliance != pieceAlliance) {
                             // make attacking move if next tile is occupied by opponent piece
-                            legalMoves.add(new Move.AtackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
                         break; // stop bishop from moving further after capturing or being blocked by friendly piece
                     }

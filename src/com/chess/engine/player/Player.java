@@ -32,7 +32,7 @@ public abstract class Player {
         return this.legalMoves;
     }
 
-    private static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
+    protected static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
         final List<Move> attackMoves = new ArrayList<>();
         // check every potential move from the opponent
         // if the destination is the same as the players piece => the move is an attack
@@ -114,4 +114,6 @@ public abstract class Player {
     public abstract Alliance getAlliance();
 
     public abstract Player getOpponent();
+
+    protected abstract Collection<Move> calculateKingCastles(Collection<Move> playerLegals, Collection<Move> opponentsLegals);
 }
