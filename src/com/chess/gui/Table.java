@@ -17,10 +17,12 @@ import java.util.List;
 public class Table {
     private final JFrame gameFrame;
     private final BoardPanel boardPanel;
+    private final Board chessBoard;
 
     private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
     private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
     private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
+    private static String defaultPieceIconPath = "art/pieces/simple/";
 
     private final Color lightTileColor = new Color(238, 238, 210);
     private final Color darkTileColor = new Color(118, 150, 86);
@@ -31,6 +33,7 @@ public class Table {
 
         this.gameFrame.setLayout(new BorderLayout());
         this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
+        this.chessBoard = Board.createStandardBoard();
 
         final JMenuBar tableMenuBar = createTableMenuBar();
         this.gameFrame.setJMenuBar(tableMenuBar);
@@ -88,14 +91,15 @@ public class Table {
             this.tileId = tileId;
             setPreferredSize(TILE_PANEL_DIMENSION);
             assignTileColor();
+            assignTilePieceIcon(chessBoard);
+            validate();
         }
 
         private void assignTilePieceIcon(final Board board) {
             this.removeAll();
             if (board.getTile(this.tileId).isTileOccupied()) {
-                String pieceIconPath = "";
                 try {
-                    final BufferedImage image = ImageIO.read(new File(pieceIconPath +
+                    final BufferedImage image = ImageIO.read(new File(defaultPieceIconPath +
                             board.getTile(this.tileId).getPiece().getPieceAlliance().toString().substring(0, 1) +
                             board.getTile(this.tileId).getPiece().toString() + ".gif"));
                     add(new JLabel(new ImageIcon(image)));
