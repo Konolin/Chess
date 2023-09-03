@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/BB.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/BK.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/BN.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/BP.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/BQ.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/BR.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/WB.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/WK.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/WN.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/WP.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/WQ.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/pieces/simple/WR.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/player/MoveStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/player/MoveStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/gui/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +99,7 @@
       <workItem from="1693478483565" duration="6168000" />
       <workItem from="1693561469196" duration="5425000" />
       <workItem from="1693647233568" duration="5547000" />
-      <workItem from="1693732790512" duration="3144000" />
+      <workItem from="1693732790512" duration="4668000" />
     </task>
     <servers />
   </component>
