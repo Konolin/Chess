@@ -8,7 +8,7 @@ public enum Alliance {
     WHITE {
         @Override
         public int getDirection() {
-            return 1;
+            return -1;
         }
 
         @Override
@@ -29,7 +29,7 @@ public enum Alliance {
     BLACK {
         @Override
         public int getDirection() {
-            return -1;
+            return 1;
         }
 
         @Override
