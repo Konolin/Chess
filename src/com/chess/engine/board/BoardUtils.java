@@ -1,5 +1,6 @@
 package com.chess.engine.board;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BoardUtils {
@@ -15,11 +16,11 @@ public class BoardUtils {
     public static final boolean[] EIGHTH_ROW = initRow(0);;
 
     public static final Map<String, Integer> POSITION_TO_COORDINATE = initializePositionToCooridanteMap();
-    public static final String[] ALGEBREIC_NOTATION = initializeAlgebreicNotation();
+    public static final String[] ALGEBRAIC_NOTATION = initializeAlgebraicNotation();
 
     public static final int NUM_TILES = 64;
-    public static final int NUM_TILES_PER_ROW = 8;
 
+    public static final int NUM_TILES_PER_ROW = 8;
     private BoardUtils() {
         throw new RuntimeException("You cannot instantiate me!");
     }
@@ -35,6 +36,7 @@ public class BoardUtils {
     }
 
     // Sets the corresponding values of a row to true
+
     private static boolean[] initRow(int rowNumber) {
         final boolean[] row = new boolean[NUM_TILES];
         do {
@@ -42,6 +44,17 @@ public class BoardUtils {
             rowNumber++;
         } while (rowNumber % NUM_TILES_PER_ROW != 0);
         return row;
+    }
+
+    private static String[] initializeAlgebraicNotation() {
+        // TODO
+        return new String[0];
+    }
+
+    private static Map<String, Integer> initializePositionToCooridanteMap() {
+        // TODO
+        Map<String, Integer> map = new HashMap<>();
+        return map;
     }
 
     // check if the coordinate is not out of bounds
@@ -53,7 +66,8 @@ public class BoardUtils {
         return POSITION_TO_COORDINATE.get(position);
     }
 
-    public static int getPositionAtCoordinate(final int coordinate) {
-        return ALGEBREIC_NOTATION(coordinate);
+    // TODO in video ii int?
+    public static String getPositionAtCoordinate(final int coordinate) {
+        return ALGEBRAIC_NOTATION[coordinate];
     }
 }
