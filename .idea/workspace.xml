@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/piece/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/piece/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/piece/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/piece/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/piece/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/piece/Knight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/engine/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/piece/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/gui/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/piece/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/piece/Rook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +105,7 @@
       <workItem from="1693647233568" duration="5547000" />
       <workItem from="1693732790512" duration="6757000" />
       <workItem from="1694336381958" duration="4834000" />
-      <workItem from="1694772319772" duration="317000" />
+      <workItem from="1694772319772" duration="1042000" />
     </task>
     <servers />
   </component>
