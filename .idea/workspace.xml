@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/art/misc/green_dot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/misc/illegal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/art/misc/red_dot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/Alliance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/chess/engine/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/engine/piece/Piece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chess/gui/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +101,8 @@
       <workItem from="1693561469196" duration="5425000" />
       <workItem from="1693647233568" duration="5547000" />
       <workItem from="1693732790512" duration="6757000" />
-      <workItem from="1694336381958" duration="3720000" />
+      <workItem from="1694336381958" duration="4834000" />
+      <workItem from="1694772319772" duration="317000" />
     </task>
     <servers />
   </component>
