@@ -4,6 +4,7 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
+import com.chess.engine.board.Move.*;
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
@@ -36,17 +37,16 @@ public class Pawn extends Piece {
             // normal move
             if (currentCandidateOffset == 8 && !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                 // TODO - more work here (promotions)
-                legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
                 // pawn jump (moves 2 squares on the first move)
             } else if (currentCandidateOffset == 16 && this.isFirstMove() &&
                     ((BoardUtils.SEVENTH_ROW[this.piecePosition] && this.getPieceAlliance().isBlack()) ||
-                    (BoardUtils.SECOND_ROW[this.piecePosition] && this.getPieceAlliance().isWhite()))) {
+                            (BoardUtils.SECOND_ROW[this.piecePosition] && this.getPieceAlliance().isWhite()))) {
                 final int behindCandidateDestinationLocation = this.piecePosition + (this.pieceAlliance.getDirection() * 8);
 
                 if (!board.getTile(behindCandidateDestinationLocation).isTileOccupied() &&
                         !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
-                    // TODO - more work here
-                    legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    legalMoves.add(new PawnJump(board, this, candidateDestinationCoordinate));
                 }
                 // capture cases and exceptions to the rules (pawns on the 1st and 8th column)
             } else if (currentCandidateOffset == 7 &&
@@ -57,7 +57,7 @@ public class Pawn extends Piece {
 
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         // TODO atack move + atack in pawn promotion
-                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
                     }
                 }
             } else if (currentCandidateOffset == 9 &&
@@ -68,7 +68,7 @@ public class Pawn extends Piece {
 
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         // TODO atack move + atack in pawn promotion
-                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
                     }
                 }
             }
