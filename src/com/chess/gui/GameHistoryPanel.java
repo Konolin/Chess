@@ -1,27 +1,30 @@
 package com.chess.gui;
 
-import com.chess.engine.board.Board;
-import com.chess.engine.board.Move;
-
-import static com.chess.gui.Table.*;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import com.chess.engine.board.Board;
+import com.chess.engine.board.Move;
+import com.chess.gui.Table.MoveLog;
 
 public class GameHistoryPanel extends JPanel {
     private final DataModel model;
     private final JScrollPane scrollPane;
-    private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(100, 400);
+    private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(100, 40);
 
     GameHistoryPanel() {
         this.setLayout(new BorderLayout());
         this.model = new DataModel();
         final JTable table = new JTable(model);
         table.setRowHeight(15);
-        this.scrollPane = new JScrollPane();
+        this.scrollPane = new JScrollPane(table);
         scrollPane.setColumnHeaderView(table.getTableHeader());
         scrollPane.setPreferredSize(HISTORY_PANEL_DIMENSION);
         this.add(scrollPane, BorderLayout.CENTER);
@@ -94,7 +97,7 @@ public class GameHistoryPanel extends JPanel {
         public Object getValueAt(final int row, final int column) {
             final Row currentRow = this.values.get(row);
             if (column == 0) {
-                return currentRow.getBlackMove();
+                return currentRow.getWhiteMove();
             } else if (column == 1) {
                 return currentRow.getBlackMove();
             }
@@ -134,9 +137,7 @@ public class GameHistoryPanel extends JPanel {
         private String whiteMove;
         private String blackMove;
 
-        Row() {
-
-        }
+        Row() {}
 
         public String getWhiteMove() {
             return this.whiteMove;
