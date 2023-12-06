@@ -73,6 +73,10 @@ public abstract class Piece {
         return this.isFirstMove;
     }
 
+    public Alliance getPieceAllegiance() {
+        return this.pieceAlliance;
+    }
+
     public enum PieceType {
         PAWN("P", 100) {
             @Override

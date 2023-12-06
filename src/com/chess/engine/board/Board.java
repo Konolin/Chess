@@ -141,6 +141,13 @@ public class Board {
         return this.blackPieces;
     }
 
+    public Collection<Piece> getAllPieces() {
+        Collection<Piece> allPieces = new ArrayList<>();
+        allPieces.addAll(this.whitePieces);
+        allPieces.addAll(this.blackPieces);
+        return allPieces;
+    }
+
     // returns the legal moves of every piece in a collection
     private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
         final List<Move> legalMoves = new ArrayList<>();
