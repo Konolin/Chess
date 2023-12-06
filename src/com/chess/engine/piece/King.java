@@ -48,7 +48,7 @@ public class King extends Piece {
 
                     if (this.pieceAlliance != pieceAlliance) {
                         // make attacking move if next tile is occupied by opponent piece
-                        legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                        legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
                 }
             }
