@@ -62,7 +62,7 @@ public class Table {
         this.boardPanel = new BoardPanel();
         this.moveLog = new MoveLog();
         this.boardDirection = BoardDirection.NORMAL;
-        this.highlightLegalMoves = false;
+        this.highlightLegalMoves = true;
 
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
         this.gameFrame.add(this.takenPiecesPanel, BorderLayout.WEST);
@@ -106,7 +106,7 @@ public class Table {
         preferencesMenu.add(flippedBoardMenuItem);
         preferencesMenu.addSeparator();
 
-        final JCheckBoxMenuItem legalMovesHighlighterCheckBox = new JCheckBoxMenuItem("Highlight legal moves", false);
+        final JCheckBoxMenuItem legalMovesHighlighterCheckBox = new JCheckBoxMenuItem("Highlight legal moves", true);
         legalMovesHighlighterCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
