@@ -57,6 +57,10 @@ public abstract class Move {
         return this.destinationCoordinate;
     }
 
+    public Board getBoard() {
+        return this.board;
+    }
+
     public Piece getMovedPiece() {
         return this.movedPiece;
     }
@@ -223,6 +227,59 @@ public abstract class Move {
             builder.setPiece(this.movedPiece.movePiece(this));
             builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
             return builder.build();
+        }
+    }
+
+    public static class PawnPromotion extends Move {
+        final Move decoratedMove;
+        final Pawn promotedPawn;
+
+        public PawnPromotion(final Move decoratorMove) {
+            super(decoratorMove.getBoard(), decoratorMove.getMovedPiece(), decoratorMove.getDestinationCoordinate());
+            this.decoratedMove = decoratorMove;
+            this.promotedPawn = (Pawn) decoratedMove.getMovedPiece();
+        }
+
+        @Override
+        public Board execute() {
+            final Board pawnMoveBoard = this.decoratedMove.execute();
+            final Board.Builder builder = new Builder();
+            for(final Piece piece : pawnMoveBoard.currentPlayer().getActivePieces()) {
+                if (!this.promotedPawn.equals(piece)) {
+                    builder.setPiece(piece);
+                }
+            }
+            for (final Piece piece : pawnMoveBoard.currentPlayer().getOpponent().getActivePieces()) {
+                builder.setPiece(piece);
+            }
+            builder.setPiece(this.promotedPawn.getPromotionPiece().movePiece(this));
+            builder.setMoveMaker(pawnMoveBoard.currentPlayer().getAlliance());
+            return builder.build();
+        }
+
+        @Override
+        public boolean isAttack() {
+            return this.decoratedMove.isAttack();
+        }
+
+        @Override
+        public Piece getAttackedPiece() {
+            return this.decoratedMove.getAttackedPiece();
+        }
+
+        @Override
+        public String toString() {
+            return "";
+        }
+
+        @Override
+        public int hashCode() {
+            return this.decoratedMove.hashCode() + (31 * promotedPawn.hashCode());
+        }
+
+        @Override
+        public boolean equals(final Object other) {
+            return this == other || other instanceof PawnPromotion && super.equals(other);
         }
     }
 

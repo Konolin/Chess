@@ -38,8 +38,11 @@ public class Pawn extends Piece {
 
             // normal move
             if (currentCandidateOffset == 8 && !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
-                // TODO - more work here (promotions)
-                legalMoves.add(new PawnMove(board, this, candidateDestinationCoordinate));
+                if (this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
+                    legalMoves.add(new Move.PawnPromotion(new PawnMove(board, this, candidateDestinationCoordinate)));
+                } else {
+                    legalMoves.add(new PawnMove(board, this, candidateDestinationCoordinate));
+                }
                 // pawn jump (moves 2 squares on the first move)
             } else if (currentCandidateOffset == 16 && this.isFirstMove() &&
                     ((BoardUtils.SEVENTH_ROW[this.piecePosition] && this.getPieceAlliance().isBlack()) ||
@@ -58,8 +61,11 @@ public class Pawn extends Piece {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
 
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
-                        // TODO atack move + atack in pawn promotion
-                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
+                        if (this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
+                            legalMoves.add(new Move.PawnPromotion(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate)));
+                        } else {
+                            legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
+                        }
                     }
                 } else if (board.getEnPassantPawn() != null) {
                     // check if en-passant pawn is next to the pawn that will perform the en-passant move
@@ -77,8 +83,11 @@ public class Pawn extends Piece {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
 
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
-                        // TODO atack move + atack in pawn promotion
-                        legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
+                        if (this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
+                            legalMoves.add(new Move.PawnPromotion(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate)));
+                        } else {
+                            legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
+                        }
                     }
                 } else if (board.getEnPassantPawn() != null) {
                     // check if en-passant pawn is next to the pawn that will perform the en-passant move
@@ -102,5 +111,10 @@ public class Pawn extends Piece {
     @Override
     public String toString() {
         return PieceType.PAWN.toString();
+    }
+
+    public Piece getPromotionPiece() {
+        // TODO - make it possible to promote to something else, not just queen
+        return new Queen(this.pieceAlliance, this.piecePosition, false);
     }
 }
