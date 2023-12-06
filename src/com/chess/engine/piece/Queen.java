@@ -22,6 +22,14 @@ public class Queen extends Piece {
         super(piecePosition, pieceAlliance, PieceType.QUEEN, isFirstMove);
     }
 
+    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7);
+    }
+
+    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == -1 || candidateOffset == 1 || candidateOffset == 9);
+    }
+
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
@@ -69,13 +77,5 @@ public class Queen extends Piece {
     @Override
     public String toString() {
         return PieceType.QUEEN.toString();
-    }
-
-    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7);
-    }
-
-    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == -1 || candidateOffset == 1 || candidateOffset == 9);
     }
 }

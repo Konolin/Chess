@@ -1,23 +1,19 @@
 package com.chess.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
 import com.chess.gui.Table.MoveLog;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameHistoryPanel extends JPanel {
+    private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(100, 40);
     private final DataModel model;
     private final JScrollPane scrollPane;
-    private static final Dimension HISTORY_PANEL_DIMENSION = new Dimension(100, 40);
 
     GameHistoryPanel() {
         this.setLayout(new BorderLayout());
@@ -68,8 +64,8 @@ public class GameHistoryPanel extends JPanel {
     }
 
     private static class DataModel extends DefaultTableModel {
-        private final List<Row> values;
         private static final String[] NAMES = {"White", "Black"};
+        private final List<Row> values;
 
         DataModel() {
             this.values = new ArrayList<>();
@@ -137,18 +133,19 @@ public class GameHistoryPanel extends JPanel {
         private String whiteMove;
         private String blackMove;
 
-        Row() {}
+        Row() {
+        }
 
         public String getWhiteMove() {
             return this.whiteMove;
         }
 
-        public String getBlackMove() {
-            return this.blackMove;
-        }
-
         public void setWhiteMove(final String whiteMove) {
             this.whiteMove = whiteMove;
+        }
+
+        public String getBlackMove() {
+            return this.blackMove;
         }
 
         public void setBlackMove(final String blackMove) {

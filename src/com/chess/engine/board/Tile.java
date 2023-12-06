@@ -7,8 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Tile {
-    protected final int tileCoordinate;
     private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
+    protected final int tileCoordinate;
+
+    private Tile(final int tileCoordinate) {
+        this.tileCoordinate = tileCoordinate;
+    }
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
         final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
@@ -22,10 +26,6 @@ public abstract class Tile {
     // else an empty tile is returned form the cache
     public static Tile createTile(final int tileCoordinate, final Piece piece) {
         return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES_CACHE.get(tileCoordinate);
-    }
-
-    private Tile(final int tileCoordinate) {
-        this.tileCoordinate = tileCoordinate;
     }
 
     public abstract boolean isTileOccupied();

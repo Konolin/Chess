@@ -1,6 +1,8 @@
 package com.chess.gui;
 
+import com.chess.engine.board.Move;
 import com.chess.engine.piece.Piece;
+import com.google.common.primitives.Ints;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,13 +11,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-import static com.chess.gui.Table.*;
-
-import com.chess.engine.board.Move;
-import com.google.common.primitives.Ints;
+import static com.chess.gui.Table.MoveLog;
 
 public class TakenPiecesPanel extends JPanel {
     private static final EtchedBorder PANEL_BORDER = new EtchedBorder(EtchedBorder.RAISED);
@@ -71,10 +72,10 @@ public class TakenPiecesPanel extends JPanel {
         });
 
         // TODO remove duplicate code
-        for(final Piece takenPiece : whiteTakenPieces) {
+        for (final Piece takenPiece : whiteTakenPieces) {
             try {
                 final BufferedImage image = ImageIO.read(new File("art/pieces/simple" +
-                        takenPiece.getPieceAlliance().toString().substring(0, 1) + "" + takenPiece.toString()));
+                        takenPiece.getPieceAlliance().toString().charAt(0) + takenPiece));
                 final ImageIcon icon = new ImageIcon(image);
                 final JLabel imageLabel = new JLabel();
                 this.southPanel.add(imageLabel);
@@ -83,10 +84,10 @@ public class TakenPiecesPanel extends JPanel {
             }
         }
 
-        for(final Piece takenPiece : blackTakenPieces) {
+        for (final Piece takenPiece : blackTakenPieces) {
             try {
                 final BufferedImage image = ImageIO.read(new File("art/pieces/simple" +
-                        takenPiece.getPieceAlliance().toString().substring(0, 1) + "" + takenPiece.toString()));
+                        takenPiece.getPieceAlliance().toString().charAt(0) + takenPiece));
                 final ImageIcon icon = new ImageIcon(image);
                 final JLabel imageLabel = new JLabel();
                 this.southPanel.add(imageLabel);
@@ -94,7 +95,7 @@ public class TakenPiecesPanel extends JPanel {
                 e.printStackTrace();
             }
         }
-        
+
         validate();
     }
 }

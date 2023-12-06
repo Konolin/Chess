@@ -7,7 +7,6 @@ import com.chess.engine.player.Player;
 import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import jdk.jfr.Description;
 
 import java.util.*;
 
@@ -20,10 +19,13 @@ public class Board {
     private final BlackPlayer blackPlayer;
     private final Player currentPlayer;
 
+    private final Pawn enPassantPawn;
+
     private Board(final Builder builder) {
         this.gameBoard = createGameBoard(builder);
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
+        this.enPassantPawn = builder.enPassantPawn;
 
         final Collection<Move> whiteStandardMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardMoves = calculateLegalMoves(this.blackPieces);
@@ -31,48 +33,6 @@ public class Board {
         this.whitePlayer = new WhitePlayer(this, whiteStandardMoves, blackStandardMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardMoves, blackStandardMoves);
         this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
-            final String tileText = this.gameBoard.get(i).toString();
-            builder.append(String.format("%3s", tileText));
-            if (((i + 1) % BoardUtils.NUM_TILES_PER_ROW) == 0) {
-                builder.append("\n");
-            }
-        }
-        return builder.toString();
-    }
-
-    public Player whitePlayer() {
-        return this.whitePlayer;
-    }
-
-    public Player blackPlayer() {
-        return this.blackPlayer;
-    }
-
-    public Player currentPlayer() {
-        return this.currentPlayer;
-    }
-
-    public Collection<Piece> getWhitePieces() {
-        return this.whitePieces;
-    }
-
-    public Collection<Piece> getBlackPieces() {
-        return this.blackPieces;
-    }
-
-    // returns the legal moves of every piece in a collection
-    private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
-        final List<Move> legalMoves = new ArrayList<>();
-        for (final Piece piece : pieces) {
-            legalMoves.addAll(piece.calculateLegalMoves(this));
-        }
-        return ImmutableList.copyOf(legalMoves);
     }
 
     // returns all pieces from the board that have the specified alliance
@@ -87,10 +47,6 @@ public class Board {
             }
         }
         return ImmutableList.copyOf(activePieces);
-    }
-
-    public Tile getTile(final int tileCoordinate) {
-        return gameBoard.get(tileCoordinate);
     }
 
     private static List<Tile> createGameBoard(final Builder builder) {
@@ -146,6 +102,56 @@ public class Board {
         builder.setMoveMaker(Alliance.WHITE);
 
         return builder.build();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
+            final String tileText = this.gameBoard.get(i).toString();
+            builder.append(String.format("%3s", tileText));
+            if (((i + 1) % BoardUtils.NUM_TILES_PER_ROW) == 0) {
+                builder.append("\n");
+            }
+        }
+        return builder.toString();
+    }
+
+    public Player whitePlayer() {
+        return this.whitePlayer;
+    }
+
+    public Player blackPlayer() {
+        return this.blackPlayer;
+    }
+
+    public Pawn getEnPassantPawn() {
+        return this.enPassantPawn;
+    }
+
+    public Player currentPlayer() {
+        return this.currentPlayer;
+    }
+
+    public Collection<Piece> getWhitePieces() {
+        return this.whitePieces;
+    }
+
+    public Collection<Piece> getBlackPieces() {
+        return this.blackPieces;
+    }
+
+    // returns the legal moves of every piece in a collection
+    private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
+        final List<Move> legalMoves = new ArrayList<>();
+        for (final Piece piece : pieces) {
+            legalMoves.addAll(piece.calculateLegalMoves(this));
+        }
+        return ImmutableList.copyOf(legalMoves);
+    }
+
+    public Tile getTile(final int tileCoordinate) {
+        return gameBoard.get(tileCoordinate);
     }
 
     public Iterable<Move> getAllLegalMoves() {

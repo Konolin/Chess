@@ -1,7 +1,7 @@
 package com.chess.gui;
 
-import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Board;
+import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
 import com.chess.engine.piece.Piece;
@@ -27,27 +27,23 @@ import static javax.swing.SwingUtilities.isLeftMouseButton;
 import static javax.swing.SwingUtilities.isRightMouseButton;
 
 public class Table {
+    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(700, 600);
+    private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
+    private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
+    private static final String defaultPieceIconPath = "art/pieces/simple/";
     private final JFrame gameFrame;
     private final GameHistoryPanel gameHistoryPanel;
     private final TakenPiecesPanel takenPiecesPanel;
     private final BoardPanel boardPanel;
     private final MoveLog moveLog;
+    private final Color lightTileColor = new Color(238, 238, 210);
+    private final Color darkTileColor = new Color(118, 150, 86);
     private Board chessBoard;
-
     private Tile sourceTile;
     private Tile destinationTile;
     private Piece humanMovedPiece;
     private BoardDirection boardDirection;
-
     private boolean highlightLegalMoves;
-
-    private static final Dimension OUTER_FRAME_DIMENSION = new Dimension(700, 600);
-    private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
-    private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
-    private static final String defaultPieceIconPath = "art/pieces/simple/";
-
-    private final Color lightTileColor = new Color(238, 238, 210);
-    private final Color darkTileColor = new Color(118, 150, 86);
 
     public Table() {
         this.gameFrame = new JFrame("JChess");
@@ -151,34 +147,6 @@ public class Table {
         abstract BoardDirection opposite();
     }
 
-    private class BoardPanel extends JPanel {
-        final List<TilePanel> boardTiles;
-
-        BoardPanel() {
-            super(new GridLayout(8, 8));
-            this.boardTiles = new ArrayList<>();
-
-            for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
-                final TilePanel tilePanel = new TilePanel(this, i);
-                this.boardTiles.add(tilePanel);
-                add(tilePanel);
-            }
-
-            setPreferredSize(BOARD_PANEL_DIMENSION);
-            validate();
-        }
-
-        public void drawBoard(final Board board) {
-            removeAll();
-            for (final TilePanel tilePanel : boardDirection.traverse(boardTiles)) {
-                tilePanel.drawTile(board);
-                add(tilePanel);
-            }
-            validate();
-            repaint();
-        }
-    }
-
     public static class MoveLog {
         private final List<Move> moves;
 
@@ -208,6 +176,34 @@ public class Table {
 
         public Move removeMove(final int index) {
             return this.moves.remove(index);
+        }
+    }
+
+    private class BoardPanel extends JPanel {
+        final List<TilePanel> boardTiles;
+
+        BoardPanel() {
+            super(new GridLayout(8, 8));
+            this.boardTiles = new ArrayList<>();
+
+            for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
+                final TilePanel tilePanel = new TilePanel(this, i);
+                this.boardTiles.add(tilePanel);
+                add(tilePanel);
+            }
+
+            setPreferredSize(BOARD_PANEL_DIMENSION);
+            validate();
+        }
+
+        public void drawBoard(final Board board) {
+            removeAll();
+            for (final TilePanel tilePanel : boardDirection.traverse(boardTiles)) {
+                tilePanel.drawTile(board);
+                add(tilePanel);
+            }
+            validate();
+            repaint();
         }
     }
 
@@ -291,7 +287,7 @@ public class Table {
             if (board.getTile(this.tileId).isTileOccupied()) {
                 try {
                     final BufferedImage image = ImageIO.read(new File(defaultPieceIconPath +
-                            board.getTile(this.tileId).getPiece().getPieceAlliance().toString().substring(0, 1) +
+                            board.getTile(this.tileId).getPiece().getPieceAlliance().toString().charAt(0) +
                             board.getTile(this.tileId).getPiece().toString() + ".gif"));
                     add(new JLabel(new ImageIcon(image)));
                 } catch (IOException e) {

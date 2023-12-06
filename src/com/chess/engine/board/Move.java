@@ -1,17 +1,16 @@
 package com.chess.engine.board;
 
+import com.chess.engine.board.Board.Builder;
 import com.chess.engine.piece.Pawn;
 import com.chess.engine.piece.Piece;
-import com.chess.engine.board.Board.Builder;
 import com.chess.engine.piece.Rook;
 
 public abstract class Move {
+    public static final Move NULL_MOVE = new NullMove();
     protected final Board board;
     protected final Piece movedPiece;
     protected final int destinationCoordinate;
     protected final boolean isFirstMove;
-
-    public static final Move NULL_MOVE = new NullMove();
 
     private Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
         this.board = board;

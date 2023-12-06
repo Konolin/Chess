@@ -25,14 +25,6 @@ public abstract class Player {
         this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
     }
 
-    public King getPlayerKing() {
-        return this.playerKing;
-    }
-
-    public Collection<Move> getLegalMoves() {
-        return this.legalMoves;
-    }
-
     protected static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
         final List<Move> attackMoves = new ArrayList<>();
         // check every potential move from the opponent
@@ -43,6 +35,14 @@ public abstract class Player {
             }
         }
         return ImmutableList.copyOf(attackMoves);
+    }
+
+    public King getPlayerKing() {
+        return this.playerKing;
+    }
+
+    public Collection<Move> getLegalMoves() {
+        return this.legalMoves;
     }
 
     // check is there is a king on the current board and returns him

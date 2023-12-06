@@ -22,6 +22,16 @@ public class King extends Piece {
         super(piecePosition, pieceAlliance, PieceType.KING, isFirstMove);
     }
 
+    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == -1 ||
+                candidateOffset == 7);
+    }
+
+    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == -7 || candidateOffset == 1 ||
+                candidateOffset == 9);
+    }
+
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
@@ -36,7 +46,7 @@ public class King extends Piece {
             }
 
             // check if candidate destination is in-bounds
-            if(BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
+            if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
 
                 if (!candidateDestinationTile.isTileOccupied()) {
@@ -64,15 +74,5 @@ public class King extends Piece {
     @Override
     public String toString() {
         return PieceType.KING.toString();
-    }
-
-    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == -1 ||
-                candidateOffset == 7);
-    }
-
-    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == -7 || candidateOffset == 1 ||
-                candidateOffset == 9);
     }
 }
