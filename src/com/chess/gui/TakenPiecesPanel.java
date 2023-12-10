@@ -9,11 +9,9 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import static com.chess.gui.Table.MoveLog;
@@ -22,6 +20,7 @@ public class TakenPiecesPanel extends JPanel {
     private static final EtchedBorder PANEL_BORDER = new EtchedBorder(EtchedBorder.RAISED);
     private static final Color PANEL_COLOR = new Color(200, 200, 200);
     private static final Dimension TAKEN_PIECES_DIMENSION = new Dimension(40, 80);
+    private static final int TAKEN_PIECES_REDUCTION = 15;
 
     private final JPanel northPanel;
     private final JPanel southPanel;
@@ -57,45 +56,33 @@ public class TakenPiecesPanel extends JPanel {
             }
         }
 
-        Collections.sort(whiteTakenPieces, new Comparator<Piece>() {
-            @Override
-            public int compare(Piece o1, Piece o2) {
-                return Ints.compare(o1.getPieceValue(), o2.getPieceValue());
-            }
-        });
+        whiteTakenPieces.sort((piece1, piece2) -> Ints.compare(piece1.getPieceValue(), piece2.getPieceValue()));
+        blackTakenPieces.sort((piece1, piece2) -> Ints.compare(piece1.getPieceValue(), piece2.getPieceValue()));
 
-        Collections.sort(blackTakenPieces, new Comparator<Piece>() {
-            @Override
-            public int compare(Piece o1, Piece o2) {
-                return Ints.compare(o1.getPieceValue(), o2.getPieceValue());
-            }
-        });
+        for (List<Piece> takenPieces : List.of(whiteTakenPieces, blackTakenPieces)) {
+            for (final Piece takenPiece : takenPieces) {
+                try {
+                    final BufferedImage image;
+                    try (FileInputStream fis = new FileInputStream(Table.DEFAULT_PIECE_ICON_PATH + takenPiece.getPieceAlliance().toString().charAt(0) + takenPiece + ".gif")) {
+                        image = ImageIO.read(fis);
+                    }
+                    if (image != null) {
+                        final ImageIcon icon = new ImageIcon(image);
+                        final JLabel imageLabel = new JLabel(new ImageIcon(icon.getImage().getScaledInstance(icon.getIconWidth() - TAKEN_PIECES_REDUCTION, icon.getIconWidth() - TAKEN_PIECES_REDUCTION, Image.SCALE_SMOOTH)));
 
-        // TODO remove duplicate code
-        for (final Piece takenPiece : whiteTakenPieces) {
-            try {
-                final BufferedImage image = ImageIO.read(new File("art/pieces/simple" +
-                        takenPiece.getPieceAlliance().toString().charAt(0) + takenPiece));
-                final ImageIcon icon = new ImageIcon(image);
-                final JLabel imageLabel = new JLabel();
-                this.southPanel.add(imageLabel);
-            } catch (final IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        for (final Piece takenPiece : blackTakenPieces) {
-            try {
-                final BufferedImage image = ImageIO.read(new File("art/pieces/simple" +
-                        takenPiece.getPieceAlliance().toString().charAt(0) + takenPiece));
-                final ImageIcon icon = new ImageIcon(image);
-                final JLabel imageLabel = new JLabel();
-                this.southPanel.add(imageLabel);
-            } catch (final IOException e) {
-                e.printStackTrace();
+                        if (takenPieces == whiteTakenPieces) {
+                            this.southPanel.add(imageLabel);
+                        } else {
+                            this.northPanel.add(imageLabel);
+                        }
+                    } else {
+                        System.out.println("TakenPiecesPanel::Image could not be loaded.");
+                    }
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-
         validate();
     }
 }

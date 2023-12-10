@@ -42,6 +42,7 @@ class GameSetup extends JDialog {
         myPanel.add(blackHumanButton);
         myPanel.add(blackComputerButton);
 
+        // TODO - remove hardcoded value for depth
         myPanel.add(new JLabel("Search"));
         this.searchDepthSpinner = addLabeledSpinner(myPanel, "Search Depth", new SpinnerNumberModel(6, 0, Integer.MAX_VALUE, 1));
 

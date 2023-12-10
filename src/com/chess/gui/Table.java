@@ -32,7 +32,7 @@ public class Table extends Observable {
     private static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
     private static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
 
-    private static final String defaultPieceIconPath = "art/pieces/simple/";
+    public static final String DEFAULT_PIECE_ICON_PATH = "art/pieces/simple/";
     private static final Table INSTANCE = new Table();
     private final JFrame gameFrame;
     private final GameHistoryPanel gameHistoryPanel;
@@ -256,6 +256,7 @@ public class Table extends Observable {
 
         @Override
         protected Move doInBackground() throws Exception {
+            // TODO - depth
             final MoveStrategy miniMax = new MiniMax(4);
             return miniMax.execute(Table.get().getGameBoard());
         }
@@ -416,7 +417,7 @@ public class Table extends Observable {
             this.removeAll();
             if (board.getTile(this.tileId).isTileOccupied()) {
                 try {
-                    final BufferedImage image = ImageIO.read(new File(defaultPieceIconPath +
+                    final BufferedImage image = ImageIO.read(new File(DEFAULT_PIECE_ICON_PATH +
                             board.getTile(this.tileId).getPiece().getPieceAlliance().toString().charAt(0) +
                             board.getTile(this.tileId).getPiece().toString() + ".gif"));
                     add(new JLabel(new ImageIcon(image)));
