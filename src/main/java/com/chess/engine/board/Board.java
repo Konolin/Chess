@@ -1,3 +1,8 @@
+/**
+ * The {@code Board} class represents a chess board.
+ * It includes methods for creating a standard chess board, calculating active pieces, and handling legal moves.
+ */
+
 package com.chess.engine.board;
 
 import com.chess.engine.Alliance;
@@ -7,20 +12,37 @@ import com.chess.engine.player.Player;
 import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import lombok.Getter;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Board {
     private final List<Tile> gameBoard;
+    @Getter
     private final Collection<Piece> whitePieces;
+    @Getter
     private final Collection<Piece> blackPieces;
 
+    @Getter
     private final WhitePlayer whitePlayer;
+    @Getter
     private final BlackPlayer blackPlayer;
+    @Getter
     private final Player currentPlayer;
 
+    @Getter
     private final Pawn enPassantPawn;
 
+    /**
+     * Constructs a new {@code Board} using the provided {@code Builder}.
+     *
+     * @param builder The {@code Builder} used to construct the board.
+     */
     private Board(final Builder builder) {
         this.gameBoard = createGameBoard(builder);
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
@@ -35,75 +57,87 @@ public class Board {
         this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
     }
 
-    // returns all pieces from the board that have the specified alliance
+    /**
+     * Calculates the active pieces on the game board belonging to the specified alliance.
+     *
+     * @param gameBoard The list of tiles representing the game board.
+     * @param alliance  The alliance of the pieces to be considered.
+     * @return An immutable collection of active pieces belonging to the specified alliance.
+     * @throws NullPointerException If any tile on the game board is occupied, but the associated piece is null.
+     */
     private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard, final Alliance alliance) {
-        final List<Piece> activePieces = new ArrayList<>();
-        for (final Tile tile : gameBoard) {
-            if (tile.isTileOccupied()) {
-                final Piece piece = tile.getPiece();
-                if (piece.getPieceAlliance() == alliance) {
-                    activePieces.add(piece);
-                }
-            }
-        }
+        final List<Piece> activePieces = gameBoard.stream()
+                .filter(Tile::isTileOccupied)
+                .map(Tile::getPiece)
+                .filter(piece -> piece != null && piece.getPieceAlliance() == alliance)
+                .collect(Collectors.toList());
         return ImmutableList.copyOf(activePieces);
     }
 
+
+    /**
+     * Creates the game board based on the configuration provided by the {@code Builder}.
+     * Each tile on the board is initialized with the corresponding piece
+     * or with an empty tile if no piece is configured for that position.
+     *
+     * @param builder The {@code Builder} containing the board configuration.
+     * @return A list of tiles representing the game board.
+     * @throws NullPointerException If the builder's configuration contains a null value at any position.
+     */
     private static List<Tile> createGameBoard(final Builder builder) {
         final Tile[] tiles = new Tile[BoardUtils.NUM_TILES];
         for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
-            // create a tile and add the corresponding piece from the boardConfig
-            // if there is no piece on a tile builder.boardConfig.get(i) returns null =>
-            // createTile takes an empty tile from EMPTY_TILES_CACHE
             tiles[i] = Tile.createTile(i, builder.boardConfig.get(i));
         }
         return ImmutableList.copyOf(tiles);
     }
 
+    /**
+     * Creates a standard chess board with pieces in their initial positions.
+     * The initial player to move is set to be the white player.
+     *
+     * @return A standard chess board.
+     */
     public static Board createStandardBoard() {
         final Builder builder = new Builder();
+        // Add black pieces to the board.
+        builder.setPieceAtPosition(new Rook(Alliance.BLACK, 0));
+        builder.setPieceAtPosition(new Knight(Alliance.BLACK, 1));
+        builder.setPieceAtPosition(new Bishop(Alliance.BLACK, 2));
+        builder.setPieceAtPosition(new Queen(Alliance.BLACK, 3));
+        builder.setPieceAtPosition(new King(Alliance.BLACK, 4, true, true));
+        builder.setPieceAtPosition(new Bishop(Alliance.BLACK, 5));
+        builder.setPieceAtPosition(new Knight(Alliance.BLACK, 6));
+        builder.setPieceAtPosition(new Rook(Alliance.BLACK, 7));
+        for (int i = 0; i < 8; i++) {
+            builder.setPieceAtPosition(new Pawn(Alliance.BLACK, i + 8));
+        }
 
-        // black layout
-        builder.setPiece(new Rook(Alliance.BLACK, 0));
-        builder.setPiece(new Knight(Alliance.BLACK, 1));
-        builder.setPiece(new Bishop(Alliance.BLACK, 2));
-        builder.setPiece(new Queen(Alliance.BLACK, 3));
-        builder.setPiece(new King(Alliance.BLACK, 4, true, true));
-        builder.setPiece(new Bishop(Alliance.BLACK, 5));
-        builder.setPiece(new Knight(Alliance.BLACK, 6));
-        builder.setPiece(new Rook(Alliance.BLACK, 7));
-        builder.setPiece(new Pawn(Alliance.BLACK, 8));
-        builder.setPiece(new Pawn(Alliance.BLACK, 9));
-        builder.setPiece(new Pawn(Alliance.BLACK, 10));
-        builder.setPiece(new Pawn(Alliance.BLACK, 11));
-        builder.setPiece(new Pawn(Alliance.BLACK, 12));
-        builder.setPiece(new Pawn(Alliance.BLACK, 13));
-        builder.setPiece(new Pawn(Alliance.BLACK, 14));
-        builder.setPiece(new Pawn(Alliance.BLACK, 15));
+        // Add white pieces to the board.
+        for (int i = 0; i < 8; i++) {
+            builder.setPieceAtPosition(new Pawn(Alliance.WHITE, i + 48));
+        }
+        builder.setPieceAtPosition(new Rook(Alliance.WHITE, 56));
+        builder.setPieceAtPosition(new Knight(Alliance.WHITE, 57));
+        builder.setPieceAtPosition(new Bishop(Alliance.WHITE, 58));
+        builder.setPieceAtPosition(new Queen(Alliance.WHITE, 59));
+        builder.setPieceAtPosition(new King(Alliance.WHITE, 60, true, true));
+        builder.setPieceAtPosition(new Bishop(Alliance.WHITE, 61));
+        builder.setPieceAtPosition(new Knight(Alliance.WHITE, 62));
+        builder.setPieceAtPosition(new Rook(Alliance.WHITE, 63));
 
-        // white layout
-        builder.setPiece(new Pawn(Alliance.WHITE, 48));
-        builder.setPiece(new Pawn(Alliance.WHITE, 49));
-        builder.setPiece(new Pawn(Alliance.WHITE, 50));
-        builder.setPiece(new Pawn(Alliance.WHITE, 51));
-        builder.setPiece(new Pawn(Alliance.WHITE, 52));
-        builder.setPiece(new Pawn(Alliance.WHITE, 53));
-        builder.setPiece(new Pawn(Alliance.WHITE, 54));
-        builder.setPiece(new Pawn(Alliance.WHITE, 55));
-        builder.setPiece(new Rook(Alliance.WHITE, 56));
-        builder.setPiece(new Knight(Alliance.WHITE, 57));
-        builder.setPiece(new Bishop(Alliance.WHITE, 58));
-        builder.setPiece(new Queen(Alliance.WHITE, 59));
-        builder.setPiece(new King(Alliance.WHITE, 60, true, true));
-        builder.setPiece(new Bishop(Alliance.WHITE, 61));
-        builder.setPiece(new Knight(Alliance.WHITE, 62));
-        builder.setPiece(new Rook(Alliance.WHITE, 63));
-
+        // Set the initial player to move as the white player.
         builder.setMoveMaker(Alliance.WHITE);
-
         return builder.build();
     }
 
+    /**
+     * Returns a string representation of the current board state.
+     * Each tile on the board is represented by its text representation.
+     * The board is formatted with ranks and files for better readability.
+     *
+     * @return A string representing the current board.
+     */
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -117,80 +151,105 @@ public class Board {
         return builder.toString();
     }
 
-    public Player whitePlayer() {
-        return this.whitePlayer;
-    }
-
-    public Player blackPlayer() {
-        return this.blackPlayer;
-    }
-
-    public Pawn getEnPassantPawn() {
-        return this.enPassantPawn;
-    }
-
-    public Player currentPlayer() {
-        return this.currentPlayer;
-    }
-
-    public Collection<Piece> getWhitePieces() {
-        return this.whitePieces;
-    }
-
-    public Collection<Piece> getBlackPieces() {
-        return this.blackPieces;
-    }
-
+    /**
+     * Retrieves all pieces on the board, both white and black.
+     *
+     * @return A collection containing all pieces on the board.
+     */
     public Collection<Piece> getAllPieces() {
-        Collection<Piece> allPieces = new ArrayList<>();
-        allPieces.addAll(this.whitePieces);
-        allPieces.addAll(this.blackPieces);
-        return allPieces;
+        return ImmutableList.copyOf(
+                Stream.concat(whitePieces.stream(), blackPieces.stream()).collect(Collectors.toList()));
     }
 
-    // returns the legal moves of every piece in a collection
+    /**
+     * Retrieves all legal moves of a given collection of pieces
+     *
+     * @param pieces The pieces for witch the legal moves are calculated
+     * @return A collection of legal moves for the provided collection
+     */
     private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
-        final List<Move> legalMoves = new ArrayList<>();
-        for (final Piece piece : pieces) {
-            legalMoves.addAll(piece.calculateLegalMoves(this));
-        }
-        return ImmutableList.copyOf(legalMoves);
+        return ImmutableList.copyOf(pieces.stream()
+                .flatMap(piece -> piece.calculateLegalMoves(this).stream())
+                .collect(Collectors.toList()));
     }
 
-    public Tile getTile(final int tileCoordinate) {
+    /**
+     * Retrieves the tile at the specified coordinate on the game board.
+     *
+     * @param tileCoordinate The specified coordinate of the wanted tile
+     * @return The tile at the specified coordinate
+     * @throws IndexOutOfBoundsException If the provided coordinate is not within the valid range.
+     */
+    public Tile getTileAtCoordinate(final int tileCoordinate) {
         return gameBoard.get(tileCoordinate);
     }
 
+    /**
+     * Retrieves all legal moves for both white and black players.
+     *
+     * @return An iterable containing all legal moves.
+     */
     public Iterable<Move> getAllLegalMoves() {
-        return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves()));
+        return Iterables.unmodifiableIterable(
+                Iterables.concat(this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves()));
     }
 
-    // builder for the board configuration
+    /**
+     * The {@code Builder} class is responsible for constructing instances of the {@code Board} class.
+     * It allows for configuring the initial state of the board before creating an immutable {@code Board} instance.
+     */
     public static class Builder {
-        Map<Integer, Piece> boardConfig;
-        Alliance nextMoveMaker;
-        Pawn enPassantPawn;
+        private final Map<Integer, Piece> boardConfig;
+        private Alliance nextMoveMaker;
+        private Pawn enPassantPawn;
 
+        /**
+         * Constructs a new {@code Builder} with an empty board configuration.
+         */
         public Builder() {
             this.boardConfig = new HashMap<>();
         }
 
-        public Builder setPiece(final Piece piece) {
+        /**
+         * Places a piece at the specified position on the board.
+         *
+         * @param piece The piece to be placed on the board.
+         * @return The current builder instance for method chaining.
+         */
+        public Builder setPieceAtPosition(final Piece piece) {
             this.boardConfig.put(piece.getPiecePosition(), piece);
             return this;
         }
 
+        /**
+         * Sets the alliance of the player to make the next move on the board.
+         *
+         * @param nextMoveMaker The alliance of the player making the next move.
+         * @return The current builder instance for method chaining.
+         */
         public Builder setMoveMaker(final Alliance nextMoveMaker) {
             this.nextMoveMaker = nextMoveMaker;
             return this;
         }
 
-        public Board build() {
-            return new Board(this);
+        /**
+         * Sets the pawn that is eligible for en passant capture on the board.
+         *
+         * @param enPassantPawn The pawn eligible for en passant capture.
+         * @return The current builder instance for method chaining.
+         */
+        public Builder setEnPassantPawn(Pawn enPassantPawn) {
+            this.enPassantPawn = enPassantPawn;
+            return this;
         }
 
-        public void setEnPassantPawn(Pawn enPassantPawn) {
-            this.enPassantPawn = enPassantPawn;
+        /**
+         * Builds and returns an immutable instance of the {@code Board} class based on the current configuration.
+         *
+         * @return An immutable instance of the {@code Board} class.
+         */
+        public Board build() {
+            return new Board(this);
         }
     }
 }

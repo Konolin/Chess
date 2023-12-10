@@ -230,9 +230,9 @@ public class Table extends Observable {
     private static class TableGameAIWatcher implements Observer {
         @Override
         public void update(final Observable o, final Object arg) {
-            if (Table.get().getGameSetup().isAIPlayer(Table.get().getGameBoard().currentPlayer()) &&
-                    !Table.get().getGameBoard().currentPlayer().isInCheckMate() &&
-                    !Table.get().getGameBoard().currentPlayer().isInStalemate()) {
+            if (Table.get().getGameSetup().isAIPlayer(Table.get().getGameBoard().getCurrentPlayer()) &&
+                    !Table.get().getGameBoard().getCurrentPlayer().isInCheckMate() &&
+                    !Table.get().getGameBoard().getCurrentPlayer().isInStalemate()) {
                 //create AI thread
                 //execute AI work
                 final AIThinkTank thinkTank = new AIThinkTank();
@@ -240,12 +240,12 @@ public class Table extends Observable {
             }
 
             // TODO - popup window
-            if (Table.get().getGameBoard().currentPlayer().isInCheckMate()) {
-                System.out.println("game over, " + Table.get().getGameBoard().currentPlayer() + " is in checkmate");
+            if (Table.get().getGameBoard().getCurrentPlayer().isInCheckMate()) {
+                System.out.println("game over, " + Table.get().getGameBoard().getCurrentPlayer() + " is in checkmate");
             }
 
-            if (Table.get().getGameBoard().currentPlayer().isInStalemate()) {
-                System.out.println("game over, " + Table.get().getGameBoard().currentPlayer() + " is in stalemate");
+            if (Table.get().getGameBoard().getCurrentPlayer().isInStalemate()) {
+                System.out.println("game over, " + Table.get().getGameBoard().getCurrentPlayer() + " is in stalemate");
             }
         }
     }
@@ -266,7 +266,7 @@ public class Table extends Observable {
             try {
                 final Move bestMove = get();
                 Table.get().updateComputerMove(bestMove);
-                Table.get().updateGameBoard(Table.get().getGameBoard().currentPlayer().makeMove(bestMove).getTransitionBoard());
+                Table.get().updateGameBoard(Table.get().getGameBoard().getCurrentPlayer().makeMove(bestMove).getTransitionBoard());
                 Table.get().getMoveLog().addMove(bestMove);
                 Table.get().getGameHistoryPanel().redo(Table.get().getGameBoard(), Table.get().getMoveLog());
                 Table.get().getTakenPiecesPanel().redo(Table.get().moveLog);
@@ -359,7 +359,7 @@ public class Table extends Observable {
                     } else if (isLeftMouseButton(e)) {
                         if (sourceTile == null) {
                             // first click (select piece to move)
-                            sourceTile = chessBoard.getTile(tileId);
+                            sourceTile = chessBoard.getTileAtCoordinate(tileId);
                             humanMovedPiece = sourceTile.getPiece();
                             if (humanMovedPiece == null) {
                                 // no piece was selected
@@ -367,9 +367,9 @@ public class Table extends Observable {
                             }
                         } else {
                             // second click (select destination)
-                            destinationTile = chessBoard.getTile(tileId);
+                            destinationTile = chessBoard.getTileAtCoordinate(tileId);
                             final Move move = Move.MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(), destinationTile.getTileCoordinate());
-                            final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
+                            final MoveTransition transition = chessBoard.getCurrentPlayer().makeMove(move);
                             if (transition.getMoveStatus().isDone()) {
                                 chessBoard = transition.getTransitionBoard();
                                 moveLog.addMove(move);
@@ -382,7 +382,7 @@ public class Table extends Observable {
                         SwingUtilities.invokeLater(() -> {
                             gameHistoryPanel.redo(chessBoard, moveLog);
                             takenPiecesPanel.redo(moveLog);
-                            if (gameSetup.isAIPlayer(chessBoard.currentPlayer())) {
+                            if (gameSetup.isAIPlayer(chessBoard.getCurrentPlayer())) {
                                 Table.get().moveMadeUpdate(PlayerType.HUMAN);
                             }
                             boardPanel.drawBoard(chessBoard);
@@ -415,11 +415,11 @@ public class Table extends Observable {
 
         private void assignTilePieceIcon(final Board board) {
             this.removeAll();
-            if (board.getTile(this.tileId).isTileOccupied()) {
+            if (board.getTileAtCoordinate(this.tileId).isTileOccupied()) {
                 try {
                     final BufferedImage image = ImageIO.read(new File(DEFAULT_PIECE_ICON_PATH +
-                            board.getTile(this.tileId).getPiece().getPieceAlliance().toString().charAt(0) +
-                            board.getTile(this.tileId).getPiece().toString() + ".gif"));
+                            board.getTileAtCoordinate(this.tileId).getPiece().getPieceAlliance().toString().charAt(0) +
+                            board.getTileAtCoordinate(this.tileId).getPiece().toString() + ".gif"));
                     add(new JLabel(new ImageIcon(image)));
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -442,7 +442,7 @@ public class Table extends Observable {
         }
 
         private Collection<Move> pieceLegalMoves(final Board board) {
-            if (humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == board.currentPlayer().getAlliance()) {
+            if (humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == board.getCurrentPlayer().getAlliance()) {
                 return humanMovedPiece.calculateLegalMoves(board);
             }
             return Collections.emptyList();

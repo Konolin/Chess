@@ -26,22 +26,22 @@ class BoardTest {
     @Test
     public void initialBoard() {
         final Board board = Board.createStandardBoard();
-        assertEquals(board.currentPlayer().getLegalMoves().size(), 20);
-        assertEquals(board.currentPlayer().getOpponent().getLegalMoves().size(), 20);
-        assertFalse(board.currentPlayer().isInCheck());
-        assertFalse(board.currentPlayer().isInCheckMate());
-        assertFalse(board.currentPlayer().isCastled());
+        assertEquals(board.getCurrentPlayer().getLegalMoves().size(), 20);
+        assertEquals(board.getCurrentPlayer().getOpponent().getLegalMoves().size(), 20);
+        assertFalse(board.getCurrentPlayer().isInCheck());
+        assertFalse(board.getCurrentPlayer().isInCheckMate());
+        assertFalse(board.getCurrentPlayer().isCastled());
 //        assertTrue(board.currentPlayer().isKingSideCastleCapable());
 //        assertTrue(board.currentPlayer().isQueenSideCastleCapable());
-        assertEquals(board.currentPlayer(), board.whitePlayer());
-        assertEquals(board.currentPlayer().getOpponent(), board.blackPlayer());
-        assertFalse(board.currentPlayer().getOpponent().isInCheck());
-        assertFalse(board.currentPlayer().getOpponent().isInCheckMate());
-        assertFalse(board.currentPlayer().getOpponent().isCastled());
+        assertEquals(board.getCurrentPlayer(), board.getWhitePlayer());
+        assertEquals(board.getCurrentPlayer().getOpponent(), board.getBlackPlayer());
+        assertFalse(board.getCurrentPlayer().getOpponent().isInCheck());
+        assertFalse(board.getCurrentPlayer().getOpponent().isInCheckMate());
+        assertFalse(board.getCurrentPlayer().getOpponent().isCastled());
 //        assertTrue(board.currentPlayer().getOpponent().isKingSideCastleCapable());
 //        assertTrue(board.currentPlayer().getOpponent().isQueenSideCastleCapable());
-        assertEquals("White", board.whitePlayer().toString());
-        assertEquals("Black", board.blackPlayer().toString());
+        assertEquals("White", board.getWhitePlayer().toString());
+        assertEquals("Black", board.getBlackPlayer().toString());
 
 //        final Iterable<Piece> allPieces = board.getAllPieces();
 //        final Iterable<Move> allMoves = Iterables.concat(board.whitePlayer().getLegalMoves(), board.blackPlayer().getLegalMoves());
@@ -136,37 +136,37 @@ class BoardTest {
     public void testInvalidBoard() {
         final Board.Builder builder = new Board.Builder();
         // Black Layout
-        builder.setPiece(new Rook(Alliance.BLACK, 0));
-        builder.setPiece(new Knight(Alliance.BLACK, 1));
-        builder.setPiece(new Bishop(Alliance.BLACK, 2));
-        builder.setPiece(new Queen(Alliance.BLACK, 3));
-        builder.setPiece(new Bishop(Alliance.BLACK, 5));
-        builder.setPiece(new Knight(Alliance.BLACK, 6));
-        builder.setPiece(new Rook(Alliance.BLACK, 7));
-        builder.setPiece(new Pawn(Alliance.BLACK, 8));
-        builder.setPiece(new Pawn(Alliance.BLACK, 9));
-        builder.setPiece(new Pawn(Alliance.BLACK, 10));
-        builder.setPiece(new Pawn(Alliance.BLACK, 11));
-        builder.setPiece(new Pawn(Alliance.BLACK, 12));
-        builder.setPiece(new Pawn(Alliance.BLACK, 13));
-        builder.setPiece(new Pawn(Alliance.BLACK, 14));
-        builder.setPiece(new Pawn(Alliance.BLACK, 15));
+        builder.setPieceAtPosition(new Rook(Alliance.BLACK, 0));
+        builder.setPieceAtPosition(new Knight(Alliance.BLACK, 1));
+        builder.setPieceAtPosition(new Bishop(Alliance.BLACK, 2));
+        builder.setPieceAtPosition(new Queen(Alliance.BLACK, 3));
+        builder.setPieceAtPosition(new Bishop(Alliance.BLACK, 5));
+        builder.setPieceAtPosition(new Knight(Alliance.BLACK, 6));
+        builder.setPieceAtPosition(new Rook(Alliance.BLACK, 7));
+        builder.setPieceAtPosition(new Pawn(Alliance.BLACK, 8));
+        builder.setPieceAtPosition(new Pawn(Alliance.BLACK, 9));
+        builder.setPieceAtPosition(new Pawn(Alliance.BLACK, 10));
+        builder.setPieceAtPosition(new Pawn(Alliance.BLACK, 11));
+        builder.setPieceAtPosition(new Pawn(Alliance.BLACK, 12));
+        builder.setPieceAtPosition(new Pawn(Alliance.BLACK, 13));
+        builder.setPieceAtPosition(new Pawn(Alliance.BLACK, 14));
+        builder.setPieceAtPosition(new Pawn(Alliance.BLACK, 15));
         // White Layout
-        builder.setPiece(new Pawn(Alliance.WHITE, 48));
-        builder.setPiece(new Pawn(Alliance.WHITE, 49));
-        builder.setPiece(new Pawn(Alliance.WHITE, 50));
-        builder.setPiece(new Pawn(Alliance.WHITE, 51));
-        builder.setPiece(new Pawn(Alliance.WHITE, 52));
-        builder.setPiece(new Pawn(Alliance.WHITE, 53));
-        builder.setPiece(new Pawn(Alliance.WHITE, 54));
-        builder.setPiece(new Pawn(Alliance.WHITE, 55));
-        builder.setPiece(new Rook(Alliance.WHITE, 56));
-        builder.setPiece(new Knight(Alliance.WHITE, 57));
-        builder.setPiece(new Bishop(Alliance.WHITE, 58));
-        builder.setPiece(new Queen(Alliance.WHITE, 59));
-        builder.setPiece(new Bishop(Alliance.WHITE, 61));
-        builder.setPiece(new Knight(Alliance.WHITE, 62));
-        builder.setPiece(new Rook(Alliance.WHITE, 63));
+        builder.setPieceAtPosition(new Pawn(Alliance.WHITE, 48));
+        builder.setPieceAtPosition(new Pawn(Alliance.WHITE, 49));
+        builder.setPieceAtPosition(new Pawn(Alliance.WHITE, 50));
+        builder.setPieceAtPosition(new Pawn(Alliance.WHITE, 51));
+        builder.setPieceAtPosition(new Pawn(Alliance.WHITE, 52));
+        builder.setPieceAtPosition(new Pawn(Alliance.WHITE, 53));
+        builder.setPieceAtPosition(new Pawn(Alliance.WHITE, 54));
+        builder.setPieceAtPosition(new Pawn(Alliance.WHITE, 55));
+        builder.setPieceAtPosition(new Rook(Alliance.WHITE, 56));
+        builder.setPieceAtPosition(new Knight(Alliance.WHITE, 57));
+        builder.setPieceAtPosition(new Bishop(Alliance.WHITE, 58));
+        builder.setPieceAtPosition(new Queen(Alliance.WHITE, 59));
+        builder.setPieceAtPosition(new Bishop(Alliance.WHITE, 61));
+        builder.setPieceAtPosition(new Knight(Alliance.WHITE, 62));
+        builder.setPieceAtPosition(new Rook(Alliance.WHITE, 63));
         //white to move
         builder.setMoveMaker(Alliance.WHITE);
         //build the board
@@ -199,19 +199,19 @@ class BoardTest {
     @Test
     public void testFoolsMate() {
         final Board board = Board.createStandardBoard();
-        final MoveTransition t1 = board.currentPlayer()
+        final MoveTransition t1 = board.getCurrentPlayer()
                 .makeMove(Move.MoveFactory.createMove(board, BoardUtils.getCoordinateAtPosition("f2"),
                         BoardUtils.getCoordinateAtPosition("f3")));
 
         assertTrue(t1.getMoveStatus().isDone());
 
-        final MoveTransition t2 = t1.getTransitionBoard().currentPlayer()
+        final MoveTransition t2 = t1.getTransitionBoard().getCurrentPlayer()
                 .makeMove(Move.MoveFactory.createMove(t1.getTransitionBoard(), BoardUtils.getCoordinateAtPosition("e7"),
                         BoardUtils.getCoordinateAtPosition("e5")));
 
         assertTrue(t2.getMoveStatus().isDone());
 
-        final MoveTransition t3 = t2.getTransitionBoard().currentPlayer()
+        final MoveTransition t3 = t2.getTransitionBoard().getCurrentPlayer()
                 .makeMove(Move.MoveFactory.createMove(t2.getTransitionBoard(), BoardUtils.getCoordinateAtPosition("g2"),
                         BoardUtils.getCoordinateAtPosition("g4")));
 

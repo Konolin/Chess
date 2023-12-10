@@ -106,8 +106,8 @@ public abstract class Player {
         final Board transitionBoard = move.execute();
         // check if there are any attacks on the current players king if the move is made
         // the current player changes after we execute the move => we need to check the opponents king
-        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(transitionBoard.currentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
-                transitionBoard.currentPlayer().getLegalMoves());
+        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(transitionBoard.getCurrentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
+                transitionBoard.getCurrentPlayer().getLegalMoves());
 
         // return the same board if there are attacks
         if (!kingAttacks.isEmpty()) {

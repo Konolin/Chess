@@ -81,19 +81,19 @@ public abstract class Move {
         final Board.Builder builder = new Board.Builder();
 
         // place all pieces of the current player on the new board, except for the moved piece
-        for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+        for (final Piece piece : this.board.getCurrentPlayer().getActivePieces()) {
             if (!this.movedPiece.equals(piece)) {
-                builder.setPiece(piece);
+                builder.setPieceAtPosition(piece);
             }
         }
 
         // place all pieces of the opponent on the new board
-        for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
-            builder.setPiece(piece);
+        for (final Piece piece : this.board.getCurrentPlayer().getOpponent().getActivePieces()) {
+            builder.setPieceAtPosition(piece);
         }
 
-        builder.setPiece(this.movedPiece.movePiece(this));
-        builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+        builder.setPieceAtPosition(this.movedPiece.movePiece(this));
+        builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
 
         // build the new board and return it
         return builder.build();
@@ -214,18 +214,18 @@ public abstract class Move {
         @Override
         public Board execute() {
             final Builder builder = new Builder();
-            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+            for (final Piece piece : this.board.getCurrentPlayer().getActivePieces()) {
                 if (!this.movedPiece.equals(piece)) {
-                    builder.setPiece(piece);
+                    builder.setPieceAtPosition(piece);
                 }
             }
-            for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
+            for (final Piece piece : this.board.getCurrentPlayer().getOpponent().getActivePieces()) {
                 if (!piece.equals(this.getAttackedPiece())) {
-                    builder.setPiece(piece);
+                    builder.setPieceAtPosition(piece);
                 }
             }
-            builder.setPiece(this.movedPiece.movePiece(this));
-            builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+            builder.setPieceAtPosition(this.movedPiece.movePiece(this));
+            builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
             return builder.build();
         }
     }
@@ -244,16 +244,16 @@ public abstract class Move {
         public Board execute() {
             final Board pawnMoveBoard = this.decoratedMove.execute();
             final Board.Builder builder = new Builder();
-            for(final Piece piece : pawnMoveBoard.currentPlayer().getActivePieces()) {
+            for(final Piece piece : pawnMoveBoard.getCurrentPlayer().getActivePieces()) {
                 if (!this.promotedPawn.equals(piece)) {
-                    builder.setPiece(piece);
+                    builder.setPieceAtPosition(piece);
                 }
             }
-            for (final Piece piece : pawnMoveBoard.currentPlayer().getOpponent().getActivePieces()) {
-                builder.setPiece(piece);
+            for (final Piece piece : pawnMoveBoard.getCurrentPlayer().getOpponent().getActivePieces()) {
+                builder.setPieceAtPosition(piece);
             }
-            builder.setPiece(this.promotedPawn.getPromotionPiece().movePiece(this));
-            builder.setMoveMaker(pawnMoveBoard.currentPlayer().getAlliance());
+            builder.setPieceAtPosition(this.promotedPawn.getPromotionPiece().movePiece(this));
+            builder.setMoveMaker(pawnMoveBoard.getCurrentPlayer().getAlliance());
             return builder.build();
         }
 
@@ -293,22 +293,22 @@ public abstract class Move {
             final Builder builder = new Builder();
 
             // place all pieces of the current player on the new board, except for the moved piece
-            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+            for (final Piece piece : this.board.getCurrentPlayer().getActivePieces()) {
                 if (!this.movedPiece.equals(piece)) {
-                    builder.setPiece(piece);
+                    builder.setPieceAtPosition(piece);
                 }
             }
 
             // place all pieces of the opponent on the new board
-            for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
-                builder.setPiece(piece);
+            for (final Piece piece : this.board.getCurrentPlayer().getOpponent().getActivePieces()) {
+                builder.setPieceAtPosition(piece);
             }
 
             // execute pawn jump, make pawn eligible to be captured via en passant, change players turn
             final Pawn movedPawn = (Pawn) this.movedPiece.movePiece(this);
-            builder.setPiece(movedPawn);
+            builder.setPieceAtPosition(movedPawn);
             builder.setEnPassantPawn(movedPawn);
-            builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+            builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
 
             // build the new board and return it
             return builder.build();
@@ -346,21 +346,21 @@ public abstract class Move {
         public Board execute() {
             final Builder builder = new Builder();
             // place all pieces of the current player on the new board, except for the moved piece (king) and the rook
-            for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+            for (final Piece piece : this.board.getCurrentPlayer().getActivePieces()) {
                 if (!this.movedPiece.equals(piece) && !this.castleRook.equals(piece)) {
-                    builder.setPiece(piece);
+                    builder.setPieceAtPosition(piece);
                 }
             }
 
             // place all pieces of the opponent on the new board
-            for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
-                builder.setPiece(piece);
+            for (final Piece piece : this.board.getCurrentPlayer().getOpponent().getActivePieces()) {
+                builder.setPieceAtPosition(piece);
             }
 
-            builder.setPiece(this.movedPiece.movePiece(this));
+            builder.setPieceAtPosition(this.movedPiece.movePiece(this));
             // TODO first move normal pieces
-            builder.setPiece(new Rook(this.castleRook.getPieceAlliance(), this.castleRookDestination));
-            builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
+            builder.setPieceAtPosition(new Rook(this.castleRook.getPieceAlliance(), this.castleRookDestination));
+            builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
             return builder.build();
         }
 

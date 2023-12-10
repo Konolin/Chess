@@ -69,7 +69,7 @@ public class King extends Piece {
 
             // check if candidate destination is in-bounds
             if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
+                final Tile candidateDestinationTile = board.getTileAtCoordinate(candidateDestinationCoordinate);
 
                 if (!candidateDestinationTile.isTileOccupied()) {
                     // make normal move

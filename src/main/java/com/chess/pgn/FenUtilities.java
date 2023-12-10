@@ -24,7 +24,7 @@ public class FenUtilities {
     private static String calculateBoardText(final Board board) {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
-            final String tileText = board.getTile(i).toString();
+            final String tileText = board.getTileAtCoordinate(i).toString();
             builder.append(tileText);
         }
         builder.insert(8, "/");
@@ -47,21 +47,21 @@ public class FenUtilities {
     }
 
     private static String calculateCurrentPlayerText(final Board board) {
-        return board.currentPlayer().toString().substring(0, 1).toLowerCase();
+        return board.getCurrentPlayer().toString().substring(0, 1).toLowerCase();
     }
 
     private static String calculateCastleText(final Board board) {
         StringBuilder builder = new StringBuilder();
-        if (board.whitePlayer().isKingSideCastleCapable()) {
+        if (board.getWhitePlayer().isKingSideCastleCapable()) {
             builder.append("K");
         }
-        if (board.whitePlayer().isQueenSideCastleCapable()) {
+        if (board.getWhitePlayer().isQueenSideCastleCapable()) {
             builder.append("Q");
         }
-        if (board.blackPlayer().isKingSideCastleCapable()) {
+        if (board.getBlackPlayer().isKingSideCastleCapable()) {
             builder.append("k");
         }
-        if (board.blackPlayer().isQueenSideCastleCapable()) {
+        if (board.getBlackPlayer().isQueenSideCastleCapable()) {
             builder.append("q");
         }
         final String result = builder.toString();

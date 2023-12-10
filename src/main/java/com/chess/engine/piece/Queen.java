@@ -48,7 +48,7 @@ public class Queen extends Piece {
                 // calculate next position, check if in-bounds and decide the move type
                 candidateDestinationCoordinate += candidateCoordinateOffset;
                 if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                    final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
+                    final Tile candidateDestinationTile = board.getTileAtCoordinate(candidateDestinationCoordinate);
 
                     if (!candidateDestinationTile.isTileOccupied()) {
                         // make normal move

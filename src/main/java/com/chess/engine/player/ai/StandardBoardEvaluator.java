@@ -40,7 +40,7 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
 
     @Override
     public int evaluate(final Board board, final int depth) {
-        return scorePlayer(board, board.whitePlayer(), depth) - scorePlayer(board, board.blackPlayer(), depth);
+        return scorePlayer(board, board.getWhitePlayer(), depth) - scorePlayer(board, board.getBlackPlayer(), depth);
     }
 
     private int scorePlayer(final Board board, final Player player, final int depth) {

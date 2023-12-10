@@ -29,7 +29,7 @@ public class BlackPlayer extends Player {
 
     @Override
     public Player getOpponent() {
-        return this.board.whitePlayer();
+        return this.board.getWhitePlayer();
     }
 
     @Override
@@ -39,9 +39,9 @@ public class BlackPlayer extends Player {
         if (this.playerKing.isFirstMove() && !this.isInCheck()) {
             // black king side castle
             // check if the tiles between king and rook are empty
-            if (!this.board.getTile(5).isTileOccupied() && !this.board.getTile(6).isTileOccupied()) {
+            if (!this.board.getTileAtCoordinate(5).isTileOccupied() && !this.board.getTileAtCoordinate(6).isTileOccupied()) {
                 // check if rook tile is occupied by a rook who hasn't made it's first move yet
-                final Tile rookTile = this.board.getTile(7);
+                final Tile rookTile = this.board.getTileAtCoordinate(7);
                 if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove() && rookTile.getPiece().getPieceType().isRook()) {
                     // check if tiles between them are not attacked
                     if (Player.calculateAttacksOnTile(5, opponentsLegals).isEmpty() &&
@@ -54,10 +54,10 @@ public class BlackPlayer extends Player {
 
             // black queen side castle
             // check if the tiles between king and rook are empty
-            if (!this.board.getTile(1).isTileOccupied() && !this.board.getTile(2).isTileOccupied() &&
-                    !this.board.getTile(3).isTileOccupied()) {
+            if (!this.board.getTileAtCoordinate(1).isTileOccupied() && !this.board.getTileAtCoordinate(2).isTileOccupied() &&
+                    !this.board.getTileAtCoordinate(3).isTileOccupied()) {
                 // check if rook tile is occupied by a rook who hasn't made it's first move yet
-                final Tile rookTile = this.board.getTile(0);
+                final Tile rookTile = this.board.getTileAtCoordinate(0);
                 if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove() && rookTile.getPiece().getPieceType().isRook()) {
                     // check if tiles between them are not attacked
                     if (Player.calculateAttacksOnTile(1, opponentsLegals).isEmpty() &&
