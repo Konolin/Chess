@@ -6,51 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/JChess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/JChess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Rook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/BlackPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/BlackPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/WhitePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/WhitePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/MiniMax.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/StandardBoardEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/StandardBoardEvaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/gui/GameHistoryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/gui/GameHistoryPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/pgn/FenUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/pgn/FenUtilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tests/chess/engine/board/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tests/chess/engine/board/BoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/JChess.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/JChess.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Board$Builder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Board.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$CastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$CastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnEnPassantAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnEnPassantAttackMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnJump.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnPromotion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnPromotion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Bishop.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Bishop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/King.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/King.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Knight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Pawn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Queen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Queen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Rook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Rook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/player/BlackPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/player/BlackPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/player/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/player/WhitePlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/player/WhitePlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/player/ai/MiniMax.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/player/ai/MiniMax.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/player/ai/StandardBoardEvaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/player/ai/StandardBoardEvaluator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/GameHistoryPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/GameHistoryPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$AIThinkTank.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$AIThinkTank.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TableGameAIWatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TableGameAIWatcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/pgn/FenUtilities.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/pgn/FenUtilities.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tests/chess/engine/board/BoardTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tests/chess/engine/board/BoardTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,3 +1,8 @@
+/**
+ * The {@code BoardUtils} class provides utility methods and constants for chess board operations.
+ * It includes information about algebraic notation, board dimensions, and coordinate mappings.
+ */
+
 package com.chess.engine.board;
 
 import com.google.common.collect.ImmutableMap;
@@ -6,10 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BoardUtils {
-    public static final String[] ALGEBRAIC_NOTATION = initializeAlgebraicNotation();
     public static final int NUM_TILES = 64;
-    public static final Map<String, Integer> POSITION_TO_COORDINATE = initializePositionToCooridanteMap();
     public static final int NUM_TILES_PER_ROW = 8;
+    public static final String[] ALGEBRAIC_NOTATION = initializeAlgebraicNotation();
+    public static final Map<String, Integer> POSITION_TO_COORDINATE = initializePositionToCooridanteMap();
     public static final boolean[] FIRST_COLUMN = initColumn(0);
     public static final boolean[] SECOND_COLUMN = initColumn(1);
     public static final boolean[] SEVENTH_COLUMN = initColumn(6);
@@ -17,35 +22,51 @@ public class BoardUtils {
     public static final boolean[] FIRST_ROW = initRow(56);
     public static final boolean[] SECOND_ROW = initRow(48);
     public static final boolean[] THIRD_ROW = initRow(32);
-    public static final boolean[] FIFTH_ROW = initRow(16);
+    public static final boolean[] FIFTH_ROW = initRow(24);
     public static final boolean[] SEVENTH_ROW = initRow(8);
     public static final boolean[] EIGHTH_ROW = initRow(0);
 
+    /**
+     * Prevents instantiation of the {@code BoardUtils} class.
+     * Instances of this class should not be created.
+     */
     private BoardUtils() {
-        throw new RuntimeException("You cannot instantiate me!");
+        throw new RuntimeException("Not instantiable.");
     }
 
+    /**
+     * Initializes an array indicating the values of a specific column on the chess board.
+     *
+     * @param columnNumber The column number to initialize.
+     * @return An array indicating the values of the specified column.
+     */
     private static boolean[] initColumn(int columnNumber) {
-        // Sets the corresponding values of a column to true
         final boolean[] column = new boolean[NUM_TILES];
-        do {
-            column[columnNumber] = true;
-            columnNumber += NUM_TILES_PER_ROW;
-        } while (columnNumber < NUM_TILES);
+        for (int i = columnNumber; i < NUM_TILES; i += NUM_TILES_PER_ROW) {
+            column[i] = true;
+        }
         return column;
     }
 
-    // Sets the corresponding values of a row to true
-
+    /**
+     * Initializes an array indicating the values of a specific row on the chess board.
+     *
+     * @param rowNumber The row number to initialize.
+     * @return An array indicating the values of the specified row.
+     */
     private static boolean[] initRow(int rowNumber) {
         final boolean[] row = new boolean[NUM_TILES];
-        do {
-            row[rowNumber] = true;
-            rowNumber++;
-        } while (rowNumber % NUM_TILES_PER_ROW != 0);
+        for (int i = rowNumber; i % NUM_TILES_PER_ROW != 0; i++) {
+            row[i] = true;
+        }
         return row;
     }
 
+    /**
+     * Initializes an array representing algebraic notation for each tile on the chess board.
+     *
+     * @return An array containing algebraic notation for each tile.
+     */
     private static String[] initializeAlgebraicNotation() {
         return new String[]{
                 "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8",
@@ -59,6 +80,11 @@ public class BoardUtils {
         };
     }
 
+    /**
+     * Initializes a mapping from algebraic position notation to board coordinates.
+     *
+     * @return An immutable map containing the mapping from position to coordinate.
+     */
     private static Map<String, Integer> initializePositionToCooridanteMap() {
         final Map<String, Integer> positionCoordinate = new HashMap<>();
         for (int i = 0; i < NUM_TILES; i++) {
@@ -67,15 +93,32 @@ public class BoardUtils {
         return ImmutableMap.copyOf(positionCoordinate);
     }
 
-    // check if the coordinate is not out of bounds
+    /**
+     * Checks if the given coordinate is within the valid bounds of the chess board.
+     *
+     * @param coordinate The coordinate to check.
+     * @return {@code true} if the coordinate is valid, {@code false} otherwise.
+     */
     public static boolean isValidCoordinate(final int coordinate) {
         return coordinate >= 0 && coordinate < NUM_TILES;
     }
 
+    /**
+     * Retrieves the board coordinate corresponding to a given algebraic position.
+     *
+     * @param position The algebraic position notation (e.g., "a1", "e5").
+     * @return The board coordinate corresponding to the specified position.
+     */
     public static int getCoordinateAtPosition(final String position) {
         return POSITION_TO_COORDINATE.get(position);
     }
 
+    /**
+     * Retrieves the algebraic position corresponding to a given board coordinate.
+     *
+     * @param coordinate The board coordinate.
+     * @return The algebraic position notation corresponding to the specified
+     */
     public static String getPositionAtCoordinate(final int coordinate) {
         return ALGEBRAIC_NOTATION[coordinate];
     }
