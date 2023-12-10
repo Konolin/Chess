@@ -449,8 +449,8 @@ public class Table extends Observable {
         }
 
         private void assignTileColor() {
-            if (BoardUtils.EIGHTH_ROW[this.tileId] || BoardUtils.FIFTH_ROW[this.tileId] ||
-                    BoardUtils.THIRD_ROW[this.tileId] || BoardUtils.SECOND_ROW[this.tileId]) {
+            if (BoardUtils.FIRST_ROW[this.tileId] || BoardUtils.THIRD_ROW[this.tileId] ||
+                    BoardUtils.FIFTH_ROW[this.tileId] || BoardUtils.SEVENTH_ROW[this.tileId]) {
                 setBackground(this.tileId % 2 == 0 ? lightTileColor : darkTileColor);
             } else {
                 setBackground(this.tileId % 2 != 0 ? lightTileColor : darkTileColor);

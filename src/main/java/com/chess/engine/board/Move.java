@@ -4,11 +4,15 @@ import com.chess.engine.board.Board.Builder;
 import com.chess.engine.piece.Pawn;
 import com.chess.engine.piece.Piece;
 import com.chess.engine.piece.Rook;
+import lombok.Getter;
 
 public abstract class Move {
     public static final Move NULL_MOVE = new NullMove();
+    @Getter
     protected final Board board;
+    @Getter
     protected final Piece movedPiece;
+    @Getter
     protected final int destinationCoordinate;
     protected final boolean isFirstMove;
 
@@ -51,18 +55,6 @@ public abstract class Move {
 
     public int getCurrentCoordinate() {
         return this.movedPiece.getPiecePosition();
-    }
-
-    public int getDestinationCoordinate() {
-        return this.destinationCoordinate;
-    }
-
-    public Board getBoard() {
-        return this.board;
-    }
-
-    public Piece getMovedPiece() {
-        return this.movedPiece;
     }
 
     public boolean isAttack() {

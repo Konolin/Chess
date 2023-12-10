@@ -6,7 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/Alliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/Alliance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/Alliance$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/Alliance$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/Alliance$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/Alliance$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/BoardUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/BoardUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$AttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$AttackMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$CastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$CastleMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$KingSideCastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$KingSideCastleMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MajorAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MajorAttackMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MajorMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MajorMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MoveFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MoveFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$NullMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$NullMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnAttackMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnEnPassantAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnEnPassantAttackMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnJump.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnPromotion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnPromotion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$QueenSideCastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$QueenSideCastleMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Pawn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tests/chess/engine/board/BoardTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tests/chess/engine/board/BoardTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,6 +239,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
