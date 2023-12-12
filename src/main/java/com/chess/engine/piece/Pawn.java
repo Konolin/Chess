@@ -58,7 +58,7 @@ public class Pawn extends Piece {
                     !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite()) ||
                             (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack()))) {
                 if (board.getTileAtCoordinate(candidateDestinationCoordinate).isTileOccupied()) {
-                    final Piece pieceOnCandidate = board.getTileAtCoordinate(candidateDestinationCoordinate).getPiece();
+                    final Piece pieceOnCandidate = board.getTileAtCoordinate(candidateDestinationCoordinate).getPieceOnTile();
 
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         if (this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
@@ -80,7 +80,7 @@ public class Pawn extends Piece {
                     !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack()) ||
                             (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite()))) {
                 if (board.getTileAtCoordinate(candidateDestinationCoordinate).isTileOccupied()) {
-                    final Piece pieceOnCandidate = board.getTileAtCoordinate(candidateDestinationCoordinate).getPiece();
+                    final Piece pieceOnCandidate = board.getTileAtCoordinate(candidateDestinationCoordinate).getPieceOnTile();
 
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         if (this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {

@@ -360,7 +360,7 @@ public class Table extends Observable {
                         if (sourceTile == null) {
                             // first click (select piece to move)
                             sourceTile = chessBoard.getTileAtCoordinate(tileId);
-                            humanMovedPiece = sourceTile.getPiece();
+                            humanMovedPiece = sourceTile.getPieceOnTile();
                             if (humanMovedPiece == null) {
                                 // no piece was selected
                                 sourceTile = null;
@@ -418,8 +418,8 @@ public class Table extends Observable {
             if (board.getTileAtCoordinate(this.tileId).isTileOccupied()) {
                 try {
                     final BufferedImage image = ImageIO.read(new File(DEFAULT_PIECE_ICON_PATH +
-                            board.getTileAtCoordinate(this.tileId).getPiece().getPieceAlliance().toString().charAt(0) +
-                            board.getTileAtCoordinate(this.tileId).getPiece().toString() + ".gif"));
+                            board.getTileAtCoordinate(this.tileId).getPieceOnTile().getPieceAlliance().toString().charAt(0) +
+                            board.getTileAtCoordinate(this.tileId).getPieceOnTile().toString() + ".gif"));
                     add(new JLabel(new ImageIcon(image)));
                 } catch (IOException e) {
                     e.printStackTrace();

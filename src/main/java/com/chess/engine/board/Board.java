@@ -68,7 +68,7 @@ public class Board {
     private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard, final Alliance alliance) {
         final List<Piece> activePieces = gameBoard.stream()
                 .filter(Tile::isTileOccupied)
-                .map(Tile::getPiece)
+                .map(Tile::getPieceOnTile)
                 .filter(piece -> piece != null && piece.getPieceAlliance() == alliance)
                 .collect(Collectors.toList());
         return ImmutableList.copyOf(activePieces);

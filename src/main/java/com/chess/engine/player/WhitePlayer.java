@@ -42,12 +42,12 @@ public class WhitePlayer extends Player {
             if (!this.board.getTileAtCoordinate(61).isTileOccupied() && !this.board.getTileAtCoordinate(62).isTileOccupied()) {
                 // check if rook tile is occupied by a rook who hasn't made it's first move yet
                 final Tile rookTile = this.board.getTileAtCoordinate(63);
-                if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove() && rookTile.getPiece().getPieceType().isRook()) {
+                if (rookTile.isTileOccupied() && rookTile.getPieceOnTile().isFirstMove() && rookTile.getPieceOnTile().getPieceType().isRook()) {
                     // check if tiles between them are not attacked
                     if (Player.calculateAttacksOnTile(61, opponentsLegals).isEmpty() &&
                             Player.calculateAttacksOnTile(62, opponentsLegals).isEmpty()) {
                         kingCastles.add(new Move.KingSideCastleMove(this.board, this.playerKing, 62,
-                                (Rook) rookTile.getPiece(), rookTile.getTileCoordinate(), 61));
+                                (Rook) rookTile.getPieceOnTile(), rookTile.getTileCoordinate(), 61));
                     }
                 }
             }
@@ -58,13 +58,13 @@ public class WhitePlayer extends Player {
                     !this.board.getTileAtCoordinate(57).isTileOccupied()) {
                 // check if rook tile is occupied by a rook who hasn't made it's first move yet
                 final Tile rookTile = this.board.getTileAtCoordinate(56);
-                if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove() && rookTile.getPiece().getPieceType().isRook()) {
+                if (rookTile.isTileOccupied() && rookTile.getPieceOnTile().isFirstMove() && rookTile.getPieceOnTile().getPieceType().isRook()) {
                     // check if tiles between them are not attacked
                     if (Player.calculateAttacksOnTile(59, opponentsLegals).isEmpty() &&
                             Player.calculateAttacksOnTile(58, opponentsLegals).isEmpty() &&
                             Player.calculateAttacksOnTile(57, opponentsLegals).isEmpty()) {
                         kingCastles.add(new Move.QueenSideCastleMove(this.board, this.playerKing, 58,
-                                (Rook) rookTile.getPiece(), rookTile.getTileCoordinate(), 59));
+                                (Rook) rookTile.getPieceOnTile(), rookTile.getTileCoordinate(), 59));
                     }
                 }
             }

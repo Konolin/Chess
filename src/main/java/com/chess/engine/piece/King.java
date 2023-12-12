@@ -75,7 +75,7 @@ public class King extends Piece {
                     // make normal move
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 } else {
-                    final Piece pieceAtDestination = candidateDestinationTile.getPiece();
+                    final Piece pieceAtDestination = candidateDestinationTile.getPieceOnTile();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                     if (this.pieceAlliance != pieceAlliance) {

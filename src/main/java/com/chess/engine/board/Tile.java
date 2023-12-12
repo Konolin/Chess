@@ -1,11 +1,18 @@
+/**
+ * The Tile class represents a single tile on a chess board. Tiles can be either empty or occupied by a piece.
+ * This class is abstract and has two concrete implementations: EmptyTile and OccupiedTile.
+ */
+
 package com.chess.engine.board;
 
 import com.chess.engine.piece.Piece;
 import com.google.common.collect.ImmutableMap;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public abstract class Tile {
     private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
     protected final int tileCoordinate;
@@ -14,6 +21,11 @@ public abstract class Tile {
         this.tileCoordinate = tileCoordinate;
     }
 
+    /**
+     * Creates a map of size 64 containing only EmptyTile objects and a corresponding Integer index.
+     *
+     * @return A map of empty tiles.
+     */
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
         final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
         for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
@@ -22,20 +34,34 @@ public abstract class Tile {
         return ImmutableMap.copyOf(emptyTileMap);
     }
 
-    // if a piece is given as input => an occupied tile is created
-    // else an empty tile is returned form the cache
+    /**
+     * Creates a Tile object based on the given tile coordinate and piece.
+     *
+     * @param tileCoordinate The coordinate of the tile.
+     * @param piece          The piece on the tile. If null, returns an empty tile from the cache.
+     * @return Tile object representing the specified coordinate and piece.
+     */
     public static Tile createTile(final int tileCoordinate, final Piece piece) {
         return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES_CACHE.get(tileCoordinate);
     }
 
+    /**
+     * Checks if the tile is occupied by a piece.
+     *
+     * @return True if the tile is occupied, false otherwise.
+     */
     public abstract boolean isTileOccupied();
 
-    public abstract Piece getPiece();
+    /**
+     * Gets the piece on the tile.
+     *
+     * @return The piece on the tile, or null if the tile is empty.
+     */
+    public abstract Piece getPieceOnTile();
 
-    public int getTileCoordinate() {
-        return this.tileCoordinate;
-    }
-
+    /**
+     * Represents an empty tile on the chess board.
+     */
     public static final class EmptyTile extends Tile {
         private EmptyTile(final int tileCoordinate) {
             super(tileCoordinate);
@@ -52,11 +78,15 @@ public abstract class Tile {
         }
 
         @Override
-        public Piece getPiece() {
+        public Piece getPieceOnTile() {
             return null;
         }
     }
 
+    /**
+     * Represents an occupied tile on the chess board with a piece.
+     */
+    @Getter
     public static final class OccupiedTile extends Tile {
         private final Piece pieceOnTile;
 
@@ -67,18 +97,13 @@ public abstract class Tile {
 
         @Override
         public String toString() {
-            // black pieces <=> lower case
-            // white pieces <=> upper case
-            return getPiece().getPieceAlliance().isBlack() ? getPiece().toString().toLowerCase() : getPiece().toString();
+            // black pieces <=> lower case; white pieces <=> upper case
+            return getPieceOnTile().getPieceAlliance().isBlack() ? getPieceOnTile().toString().toLowerCase() : getPieceOnTile().toString();
         }
 
         @Override
         public boolean isTileOccupied() {
             return true;
-        }
-
-        public Piece getPiece() {
-            return this.pieceOnTile;
         }
     }
 }
