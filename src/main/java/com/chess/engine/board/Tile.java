@@ -1,5 +1,5 @@
 /**
- * The Tile class represents a single tile on a chess board. Tiles can be either empty or occupied by a piece.
+ * The {@code Board} class represents a single tile on a chess board. Tiles can be either empty or occupied by a piece.
  * This class is abstract and has two concrete implementations: EmptyTile and OccupiedTile.
  */
 

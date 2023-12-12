@@ -1,5 +1,5 @@
 /**
- * The Move class represents a move in a chess game. It is an abstract class
+ * The {@code Board} class represents a move in a chess game. It is an abstract class
  * with various subclasses representing different types of moves, such as
  * standard moves, attack moves, castling moves, pawn promotions, and null moves.
  * <p>
