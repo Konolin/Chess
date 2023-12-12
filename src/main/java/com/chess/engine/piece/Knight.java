@@ -1,3 +1,8 @@
+/**
+ * The {@code Knight} class represents a knight chess piece.
+ * It extends the abstract Piece class.
+ */
+
 package com.chess.engine.piece;
 
 import com.chess.engine.Alliance;
@@ -14,10 +19,23 @@ import java.util.List;
 public class Knight extends Piece {
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
 
+    /**
+     * Creates a new {@code Knight} instance with the specified alliance and position.
+     *
+     * @param pieceAlliance The alliance (BLACK or WHITE) of the knight.
+     * @param piecePosition The initial position of the knight on the board.
+     */
     public Knight(final Alliance pieceAlliance, final int piecePosition) {
         super(piecePosition, pieceAlliance, PieceType.KNIGHT, true);
     }
 
+    /**
+     * Creates a new {@code Knight} instance with the specified alliance, position, and move status.
+     *
+     * @param pieceAlliance The alliance (BLACK or WHITE) of the knight.
+     * @param piecePosition The initial position of the knight on the board.
+     * @param isFirstMove   A boolean indicating whether it is the knight's first move.
+     */
     public Knight(final Alliance pieceAlliance, final int piecePosition, final boolean isFirstMove) {
         super(piecePosition, pieceAlliance, PieceType.KNIGHT, isFirstMove);
     }
@@ -40,6 +58,12 @@ public class Knight extends Piece {
                 candidateOffset == 10 || candidateOffset == 17);
     }
 
+    /**
+     * Calculates the legal moves for the knight on the given board.
+     *
+     * @param board The current state of the chess board.
+     * @return A collection of legal moves for the knight.
+     */
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
@@ -48,7 +72,7 @@ public class Knight extends Piece {
             int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
 
             if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                // jump over the cases where the candidate offset is not valid
+                // Jump over the cases where the candidate offset is not valid
                 if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                         isSecondColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                         isSeventhColumnExclusion(this.piecePosition, currentCandidateOffset) ||
@@ -58,14 +82,14 @@ public class Knight extends Piece {
 
                 final Tile candidateDestinationTile = board.getTileAtCoordinate(candidateDestinationCoordinate);
                 if (!candidateDestinationTile.isTileOccupied()) {
-                    // make normal move
+                    // Make normal move
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 } else {
                     final Piece pieceAtDestination = candidateDestinationTile.getPieceOnTile();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                     if (this.pieceAlliance != pieceAlliance) {
-                        // make attacking move if next tile is occupied by opponent piece
+                        // Make attacking move if next tile is occupied by opponent piece
                         legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
                 }
@@ -74,6 +98,12 @@ public class Knight extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    /**
+     * Creates a new {@code Knight} instance after a move.
+     *
+     * @param move The move to be applied to the knight.
+     * @return A new knight with the updated position.
+     */
     @Override
     public Knight movePiece(final Move move) {
         return new Knight(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
