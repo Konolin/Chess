@@ -5,32 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/Alliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/Alliance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Chess.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/Alliance$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/Alliance$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/Alliance$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/Alliance$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/BoardUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/BoardUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$AttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$AttackMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$CastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$CastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$KingSideCastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$KingSideCastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MajorAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MajorAttackMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MajorMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MajorMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MoveFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$MoveFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$NullMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$NullMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnAttackMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnEnPassantAttackMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnEnPassantAttackMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnJump.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnPromotion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$PawnPromotion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$QueenSideCastleMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move$QueenSideCastleMove.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/board/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Pawn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tests/chess/engine/board/BoardTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tests/chess/engine/board/BoardTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Rook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +28,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="temp" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -64,34 +49,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/guava_jar_files/guava-32.1.2-jre.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.JChess.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/guava_jar_files/guava-32.1.2-jre.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.chess.engine.player" />
@@ -205,10 +193,17 @@
         <item itemvalue="JUnit.BoardTest.testInvalidBoard" />
         <item itemvalue="JUnit.BoardTest.testFoolsMate" />
         <item itemvalue="JUnit.BoardTest.mem" />
-        <item itemvalue="JUnit.BoardTest" />
         <item itemvalue="JUnit.BoardTest.initialBoard" />
+        <item itemvalue="JUnit.BoardTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-3183f394aec4-7d648f2c" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -231,6 +226,7 @@
       <workItem from="1694772319772" duration="8645000" />
       <workItem from="1694857198444" duration="4533000" />
       <workItem from="1702210416889" duration="9876000" />
+      <workItem from="1702377213068" duration="3356000" />
     </task>
     <servers />
   </component>
@@ -239,17 +235,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
