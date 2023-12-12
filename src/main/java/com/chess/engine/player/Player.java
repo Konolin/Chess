@@ -80,8 +80,7 @@ public abstract class Player {
     }
 
     public boolean isCastled() {
-        return false;
-        // TODO - implementation
+        return this.playerKing.isCastled();
     }
 
     protected boolean hasEscapeMoves() {
