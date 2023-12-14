@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_13_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_13_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Bishop.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Bishop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Knight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$AIThinkTank.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$AIThinkTank.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$MoveLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$MoveLog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/MiniMax.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

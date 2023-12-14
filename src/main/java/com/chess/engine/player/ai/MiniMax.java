@@ -13,6 +13,10 @@ public class MiniMax implements MoveStrategy {
         this.searchDepth = searchDepth;
     }
 
+    private static boolean isEndgameScenario(final Board board) {
+        return board.getCurrentPlayer().isInCheckMate() || board.getCurrentPlayer().isInStalemate();
+    }
+
     @Override
     public String toString() {
         return "MiniMax";
@@ -28,7 +32,7 @@ public class MiniMax implements MoveStrategy {
 
         System.out.println(board.getCurrentPlayer() + "Thinking with depth = " + this.searchDepth);
 
-        int numMoves = board.getCurrentPlayer().getLegalMoves().size();
+        int numLegalMoves = board.getCurrentPlayer().getLegalMoves().size();
 
         for (final Move move : board.getCurrentPlayer().getLegalMoves()) {
             final MoveTransition moveTransition = board.getCurrentPlayer().makeMove(move);
@@ -46,7 +50,8 @@ public class MiniMax implements MoveStrategy {
             }
         }
 
-        final long executionTime = System.currentTimeMillis() - startTime;
+        final long executionTime = (System.currentTimeMillis() - startTime) / 1000;
+        System.out.println("Execution time: " + executionTime + " s, legal moves: " + numLegalMoves + ", rate: " + (numLegalMoves / executionTime) + " moves/s");
 
         return bestMove;
     }
@@ -68,10 +73,6 @@ public class MiniMax implements MoveStrategy {
             }
         }
         return lowestSeenValue;
-    }
-
-    private static boolean isEndgameScenario(final Board board) {
-        return board.getCurrentPlayer().isInCheckMate() || board.getCurrentPlayer().isInStalemate();
     }
 
     public int max(final Board board, final int depth) {

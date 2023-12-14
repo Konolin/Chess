@@ -9,6 +9,7 @@ import com.chess.engine.player.MoveTransition;
 import com.chess.engine.player.ai.MiniMax;
 import com.chess.engine.player.ai.MoveStrategy;
 import com.google.common.collect.Lists;
+import lombok.Getter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -109,12 +110,7 @@ public class Table extends Observable {
         final JMenu fileMenu = new JMenu("File");
         final JMenuItem openPGN = new JMenuItem("Load PGN File");
 
-        openPGN.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("open up that pgn file");
-            }
-        });
+        openPGN.addActionListener(e -> System.out.println("open up that pgn file"));
         fileMenu.add(openPGN);
 
         return fileMenu;
@@ -123,23 +119,15 @@ public class Table extends Observable {
     private JMenu createPreferencesMenu() {
         final JMenu preferencesMenu = new JMenu("Preferences");
         final JMenuItem flippedBoardMenuItem = new JMenuItem("Flipped board");
-        flippedBoardMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boardDirection = boardDirection.opposite();
-                boardPanel.drawBoard(chessBoard);
-            }
+        flippedBoardMenuItem.addActionListener(e -> {
+            boardDirection = boardDirection.opposite();
+            boardPanel.drawBoard(chessBoard);
         });
         preferencesMenu.add(flippedBoardMenuItem);
         preferencesMenu.addSeparator();
 
         final JCheckBoxMenuItem legalMovesHighlighterCheckBox = new JCheckBoxMenuItem("Highlight legal moves", true);
-        legalMovesHighlighterCheckBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                highlightLegalMoves = legalMovesHighlighterCheckBox.isSelected();
-            }
-        });
+        legalMovesHighlighterCheckBox.addActionListener(e -> highlightLegalMoves = legalMovesHighlighterCheckBox.isSelected());
         preferencesMenu.add(legalMovesHighlighterCheckBox);
 
         return preferencesMenu;
@@ -148,12 +136,9 @@ public class Table extends Observable {
     private JMenu createOptionsMenu() {
         final JMenu optionsMenu = new JMenu("Options");
         final JMenuItem setupGameMenuItem = new JMenuItem("Setup Game");
-        setupGameMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Table.get().getGameSetup().promptUser();
-                Table.get().setupUpdate(Table.get().getGameSetup());
-            }
+        setupGameMenuItem.addActionListener(e -> {
+            Table.get().getGameSetup().promptUser();
+            Table.get().setupUpdate(Table.get().getGameSetup());
         });
         optionsMenu.add(setupGameMenuItem);
         return optionsMenu;
@@ -233,8 +218,6 @@ public class Table extends Observable {
             if (Table.get().getGameSetup().isAIPlayer(Table.get().getGameBoard().getCurrentPlayer()) &&
                     !Table.get().getGameBoard().getCurrentPlayer().isInCheckMate() &&
                     !Table.get().getGameBoard().getCurrentPlayer().isInStalemate()) {
-                //create AI thread
-                //execute AI work
                 final AIThinkTank thinkTank = new AIThinkTank();
                 thinkTank.execute();
             }
@@ -278,14 +261,11 @@ public class Table extends Observable {
     }
 
     public static class MoveLog {
+        @Getter
         private final List<Move> moves;
 
         MoveLog() {
             this.moves = new ArrayList<>();
-        }
-
-        public List<Move> getMoves() {
-            return this.moves;
         }
 
         public void addMove(final Move move) {
