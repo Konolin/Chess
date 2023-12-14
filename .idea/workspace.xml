@@ -4,7 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="" />
+    <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/gameStats/V1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gameStats/V2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/MiniMax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece$PieceType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Piece.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Queen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Queen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Rook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Rook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/player/ai/MiniMax.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/player/ai/MiniMax.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$AIThinkTank.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$AIThinkTank.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardDirection$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardDirection$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardDirection$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardDirection$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardDirection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$BoardPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$MoveLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$MoveLog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$PlayerType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$PlayerType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TableGameAIWatcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TableGameAIWatcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

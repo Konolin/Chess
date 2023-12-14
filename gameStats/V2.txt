@@ -1,0 +1,82 @@
+BlackThinking with depth = 4
+Execution time: 0.84 s, legal moves: 20, rate: 23.75 moves/s
+BlackThinking with depth = 4
+Execution time: 0.17 s, legal moves: 21, rate: 121.39 moves/s
+BlackThinking with depth = 4
+Execution time: 0.47 s, legal moves: 23, rate: 49.15 moves/s
+BlackThinking with depth = 4
+Execution time: 0.34 s, legal moves: 20, rate: 58.14 moves/s
+BlackThinking with depth = 4
+Execution time: 0.39 s, legal moves: 30, rate: 77.32 moves/s
+BlackThinking with depth = 4
+Execution time: 0.20 s, legal moves: 29, rate: 145.73 moves/s
+BlackThinking with depth = 4
+Execution time: 0.48 s, legal moves: 30, rate: 63.03 moves/s
+BlackThinking with depth = 4
+Execution time: 0.43 s, legal moves: 26, rate: 61.03 moves/s
+BlackThinking with depth = 4
+Execution time: 0.45 s, legal moves: 26, rate: 58.04 moves/s
+BlackThinking with depth = 4
+Execution time: 0.45 s, legal moves: 34, rate: 75.22 moves/s
+BlackThinking with depth = 4
+Execution time: 0.02 s, legal moves: 31, rate: 1476.19 moves/s
+BlackThinking with depth = 4
+Execution time: 0.36 s, legal moves: 30, rate: 82.42 moves/s
+BlackThinking with depth = 4
+Execution time: 0.16 s, legal moves: 30, rate: 193.55 moves/s
+BlackThinking with depth = 4
+Execution time: 0.14 s, legal moves: 26, rate: 181.82 moves/s
+BlackThinking with depth = 4
+Execution time: 0.67 s, legal moves: 33, rate: 49.03 moves/s
+BlackThinking with depth = 4
+Execution time: 0.47 s, legal moves: 28, rate: 59.70 moves/s
+BlackThinking with depth = 4
+Execution time: 0.82 s, legal moves: 39, rate: 47.39 moves/s
+BlackThinking with depth = 4
+Execution time: 0.85 s, legal moves: 40, rate: 47.17 moves/s
+BlackThinking with depth = 4
+Execution time: 2.73 s, legal moves: 38, rate: 13.92 moves/s
+BlackThinking with depth = 4
+Execution time: 1.46 s, legal moves: 41, rate: 28.14 moves/s
+BlackThinking with depth = 4
+Execution time: 0.39 s, legal moves: 34, rate: 87.18 moves/s
+BlackThinking with depth = 4
+Execution time: 0.21 s, legal moves: 35, rate: 169.90 moves/s
+BlackThinking with depth = 4
+Execution time: 0.30 s, legal moves: 33, rate: 110.74 moves/s
+BlackThinking with depth = 4
+Execution time: 0.32 s, legal moves: 35, rate: 110.06 moves/s
+BlackThinking with depth = 4
+Execution time: 0.16 s, legal moves: 34, rate: 217.95 moves/s
+BlackThinking with depth = 4
+Execution time: 0.21 s, legal moves: 34, rate: 161.90 moves/s
+BlackThinking with depth = 4
+Execution time: 0.38 s, legal moves: 40, rate: 105.54 moves/s
+BlackThinking with depth = 4
+Execution time: 0.03 s, legal moves: 43, rate: 1303.03 moves/s
+BlackThinking with depth = 4
+Execution time: 0.04 s, legal moves: 44, rate: 1257.14 moves/s
+BlackThinking with depth = 4
+Execution time: 0.24 s, legal moves: 43, rate: 180.67 moves/s
+BlackThinking with depth = 4
+Execution time: 0.22 s, legal moves: 43, rate: 194.57 moves/s
+BlackThinking with depth = 4
+Execution time: 0.03 s, legal moves: 28, rate: 848.48 moves/s
+BlackThinking with depth = 4
+Execution time: 0.11 s, legal moves: 26, rate: 240.74 moves/s
+BlackThinking with depth = 4
+Execution time: 0.10 s, legal moves: 28, rate: 285.71 moves/s
+BlackThinking with depth = 4
+Execution time: 0.20 s, legal moves: 23, rate: 114.43 moves/s
+BlackThinking with depth = 4
+Execution time: 0.13 s, legal moves: 21, rate: 165.35 moves/s
+BlackThinking with depth = 4
+Execution time: 0.04 s, legal moves: 25, rate: 581.40 moves/s
+BlackThinking with depth = 4
+Execution time: 0.04 s, legal moves: 25, rate: 595.24 moves/s
+BlackThinking with depth = 4
+Execution time: 0.06 s, legal moves: 28, rate: 437.50 moves/s
+BlackThinking with depth = 4
+Execution time: 0.08 s, legal moves: 38, rate: 487.18 moves/s
+BlackThinking with depth = 4
+Execution time: 0.06 s, legal moves: 43, rate: 754.39 moves/s
