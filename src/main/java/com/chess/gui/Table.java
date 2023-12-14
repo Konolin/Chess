@@ -256,8 +256,7 @@ public class Table extends Observable {
 
         @Override
         protected Move doInBackground() throws Exception {
-            // TODO - depth
-            final MoveStrategy miniMax = new MiniMax(4);
+            final MoveStrategy miniMax = new MiniMax(Table.get().gameSetup.getSearchDepth());
             return miniMax.execute(Table.get().getGameBoard());
         }
 

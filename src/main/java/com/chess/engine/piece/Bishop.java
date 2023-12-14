@@ -62,34 +62,40 @@ public class Bishop extends Piece {
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int candidateOffset : CANDIDATE_MOVES_VECTOR_COORDINATES) {
-            int destinationCoordinate = this.piecePosition + candidateOffset;
+        for (final int candidateCoordinateOffset : CANDIDATE_MOVES_VECTOR_COORDINATES) {
+            int candidateDestinationCoordinate = this.piecePosition;
 
-            while (BoardUtils.isValidCoordinate(destinationCoordinate)) {
-                if (isFirstOrEighthColumnExclusion(destinationCoordinate, candidateOffset)) {
+            // while candidate destination is in-bounds
+            while (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
+                // jump over the cases where the candidate vectors are not valid
+                if (isFirstOrEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
                     break;
                 }
 
-                final Tile destinationTile = board.getTileAtCoordinate(destinationCoordinate);
+                // calculate next candidate destination, check if it's in-bounds and decide the move type
+                candidateDestinationCoordinate += candidateCoordinateOffset;
+                if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
+                    final Tile candidateDestinationTile = board.getTileAtCoordinate(candidateDestinationCoordinate);
 
-                if (!destinationTile.isTileOccupied()) {
-                    legalMoves.add(new Move.MajorMove(board, this, destinationCoordinate));
-                } else {
-                    final Piece pieceAtDestination = destinationTile.getPieceOnTile();
-                    final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
+                    if (!candidateDestinationTile.isTileOccupied()) {
+                        // make normal move
+                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    } else {
+                        final Piece pieceAtDestination = candidateDestinationTile.getPieceOnTile();
+                        final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
-                    if (this.pieceAlliance != pieceAlliance) {
-                        legalMoves.add(new Move.MajorAttackMove(board, this, destinationCoordinate, pieceAtDestination));
+                        if (this.pieceAlliance != pieceAlliance) {
+                            // make attacking move if next tile is occupied by opponent piece
+                            legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                        }
+                        break; // stop bishop from moving further after capturing or being blocked by friendly piece
                     }
-                    break; // Stop bishop from moving further after capturing or being blocked by a friendly piece
                 }
-
-                destinationCoordinate += candidateOffset;
             }
         }
-
         return ImmutableList.copyOf(legalMoves);
     }
+
 
     /**
      * Moves the bishop to a new position based on the provided move.
