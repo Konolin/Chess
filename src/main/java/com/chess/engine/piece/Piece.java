@@ -3,12 +3,19 @@ package com.chess.engine.piece;
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
+import lombok.Getter;
 
 import java.util.Collection;
 
+/**
+ * The abstract class representing a chess piece.
+ */
 public abstract class Piece {
+    @Getter
     protected final PieceType pieceType;
+    @Getter
     protected final int piecePosition;
+    @Getter
     protected final Alliance pieceAlliance;
     protected final boolean isFirstMove;
     private final int cachedHashCode;
@@ -28,18 +35,6 @@ public abstract class Piece {
         result = prime * result + piecePosition;
         result = prime * result + (isFirstMove ? 1 : 0);
         return result;
-    }
-
-    public PieceType getPieceType() {
-        return this.pieceType;
-    }
-
-    public Alliance getPieceAlliance() {
-        return this.pieceAlliance;
-    }
-
-    public int getPiecePosition() {
-        return this.piecePosition;
     }
 
     public int getPieceValue() {
@@ -77,6 +72,9 @@ public abstract class Piece {
         return this.pieceAlliance;
     }
 
+    /**
+     * Enumeration representing different types of chess pieces.
+     */
     public enum PieceType {
         PAWN("P", 100) {
             @Override
@@ -146,6 +144,7 @@ public abstract class Piece {
         };
 
         private final String pieceName;
+        @Getter
         private final int pieceValue;
 
         PieceType(final String pieceName, final int pieceValue) {
@@ -161,9 +160,5 @@ public abstract class Piece {
         public abstract boolean isKing();
 
         public abstract boolean isRook();
-
-        public int getPieceValue() {
-            return this.pieceValue;
-        }
     }
 }

@@ -1,3 +1,8 @@
+/**
+ * The {@code Rook} class represents the rook chess piece.
+ * It extends the abstract Piece class and implements the behavior specific to a rook on a chessboard.
+ */
+
 package com.chess.engine.piece;
 
 import com.chess.engine.Alliance;
@@ -12,24 +17,50 @@ import java.util.Collection;
 import java.util.List;
 
 public class Rook extends Piece {
+    /**
+     * offsets for the rook's possible moves
+     */
     private final static int[] CANDIDATE_MOVES_VECTOR_COORDINATES = {-8, -1, 1, 8};
 
+    /**
+     * Constructor for a rook that initializes its position, alliance, and type.
+     *
+     * @param pieceAlliance   the alliance of the rook
+     * @param piecePosition   the position of the rook
+     */
     public Rook(final Alliance pieceAlliance, final int piecePosition) {
         super(piecePosition, pieceAlliance, PieceType.ROOK, true);
     }
 
+    /**
+     * Constructor for a rook that initializes its position, alliance, type, and whether it is its first move.
+     *
+     * @param pieceAlliance   the alliance of the rook
+     * @param piecePosition   the position of the rook
+     * @param isFirstMove     whether it is the rook's first move
+     */
     public Rook(final Alliance pieceAlliance, final int piecePosition, final boolean isFirstMove) {
         super(piecePosition, pieceAlliance, PieceType.ROOK, isFirstMove);
     }
 
-    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && candidateOffset == -1;
+    /**
+     * Helper method that checks if the rook is in the first or eighth column and the destination offset vector is invalid.
+     *
+     * @param currentPosition      the current position of the rook
+     * @param candidateOffset       the destination offset vector
+     * @return {@code true} if the rook is in the first or eighth column and the destination offset vector is invalid
+     */
+    private static boolean isFirstOrEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.FIRST_COLUMN[currentPosition] && candidateOffset == -1 ||
+                BoardUtils.EIGHTH_COLUMN[currentPosition] && candidateOffset == 1;
     }
 
-    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && candidateOffset == 1;
-    }
-
+    /**
+     * Calculates the legal moves for a rook on the board.
+     *
+     * @param board     the board on which the rook is placed
+     * @return {@code Collection<Move>} a collection of all the legal moves for the rook
+     */
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
@@ -40,8 +71,7 @@ public class Rook extends Piece {
             // while next position is in-bounds
             while (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
                 // jump over the cases where the destination offset vector is not valid
-                if (isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset) ||
-                        isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
+                if (isFirstOrEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
                     break;
                 }
 
@@ -69,6 +99,12 @@ public class Rook extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    /**
+     * Moves the rook to the destination coordinate and returns a new rook.
+     *
+     * @param move  the move to be made
+     * @return {@code Rook} a new rook at the destination coordinate
+     */
     @Override
     public Rook movePiece(final Move move) {
         return new Rook(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate(), false);
