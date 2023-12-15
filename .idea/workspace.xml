@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitboards/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_13_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_13_PM__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/MoveUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bitboards/BitBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitboards/BitBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bitboards/ChessBitSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitboards/ChessBitSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/JChess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/JChess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/BoardUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +225,7 @@
       <workItem from="1694857198444" duration="4533000" />
       <workItem from="1702210416889" duration="9876000" />
       <workItem from="1702377213068" duration="6299000" />
-      <workItem from="1702646654559" duration="3004000" />
+      <workItem from="1702646654559" duration="3888000" />
     </task>
     <servers />
   </component>

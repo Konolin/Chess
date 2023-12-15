@@ -19,7 +19,7 @@ public class BoardUtils {
     public static final boolean[] SECOND_COLUMN = initColumn(1);
     public static final boolean[] SEVENTH_COLUMN = initColumn(6);
     public static final boolean[] EIGHTH_COLUMN = initColumn(7);
-    
+
     public static final boolean[] EIGHTH_ROW = initRow(56);
     public static final boolean[] SEVENTH_ROW = initRow(48);
     public static final boolean[] FIFTH_ROW = initRow(32);

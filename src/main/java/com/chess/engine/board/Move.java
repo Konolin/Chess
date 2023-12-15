@@ -19,7 +19,6 @@ import com.chess.engine.piece.Rook;
 import lombok.Getter;
 
 public abstract class Move {
-    public static final Move NULL_MOVE = new NullMove();
     @Getter
     protected final Board board;
     @Getter
@@ -540,7 +539,7 @@ public abstract class Move {
                     return move;
                 }
             }
-            return NULL_MOVE;
+            return MoveUtils.NULL_MOVE;
         }
     }
 }
