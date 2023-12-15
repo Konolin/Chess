@@ -9,12 +9,11 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
-import com.chess.engine.board.Tile;
+import com.chess.engine.board.MoveUtils.Line;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Bishop extends Piece {
     /**
@@ -22,6 +21,12 @@ public class Bishop extends Piece {
      * The bishop can move diagonally in any direction, represented by these offsets.
      */
     private final static int[] CANDIDATE_MOVES_VECTOR_COORDINATES = {-9, -7, 7, 9};
+
+    /**
+     * The precomputed legal moves for each tile coordinate on the board.
+     * The bishop can move diagonally in any direction, represented by these offsets.
+     */
+    private final static Map<Integer, Line[]> PRECOMPUTED_LEGAL_MOVES = initializeLegalMoves();
 
     /**
      * Constructs a Bishop object with the specified alliance and position.
@@ -47,9 +52,41 @@ public class Bishop extends Piece {
         super(piecePosition, pieceAlliance, PieceType.BISHOP, isFirstMove);
     }
 
-    private boolean isFirstOrEighthColumnExclusion(int destinationCoordinate, int candidateOffset) {
+    private static boolean isFirstOrEighthColumnExclusion(int destinationCoordinate, int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[destinationCoordinate] && (candidateOffset == -9 || candidateOffset == 7) ||
                 BoardUtils.EIGHTH_COLUMN[destinationCoordinate] && (candidateOffset == -7 || candidateOffset == 9);
+    }
+
+    /**
+     * Initializes and returns a mapping of tile coordinates to legal moves for the bishop.
+     *
+     * @return An immutable mapping of tile coordinates to legal moves for the bishop.
+     */
+    private static Map<Integer, Line[]> initializeLegalMoves() {
+        Map<Integer, Line[]> legalMoves = new HashMap<>();
+        for (int position = 0; position < BoardUtils.NUM_TILES; position++) {
+            List<Line> lines = new ArrayList<>();
+            for (final int offset : CANDIDATE_MOVES_VECTOR_COORDINATES) {
+                int destination = position;
+                Line line = new Line();
+                while (BoardUtils.isValidCoordinate(destination)) {
+                    if (isFirstOrEighthColumnExclusion(destination, offset)) {
+                        break;
+                    }
+                    destination += offset;
+                    if (BoardUtils.isValidCoordinate(destination)) {
+                        line.addCoordinate(destination);
+                    }
+                }
+                if (!line.isEmpty()) {
+                    lines.add(line);
+                }
+            }
+            if (!lines.isEmpty()) {
+                legalMoves.put(position, lines.toArray(new Line[0]));
+            }
+        }
+        return ImmutableMap.copyOf(legalMoves);
     }
 
     /**
@@ -61,35 +98,16 @@ public class Bishop extends Piece {
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
-
-        for (final int candidateCoordinateOffset : CANDIDATE_MOVES_VECTOR_COORDINATES) {
-            int candidateDestinationCoordinate = this.piecePosition;
-
-            // while candidate destination is in-bounds
-            while (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                // jump over the cases where the candidate vectors are not valid
-                if (isFirstOrEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
-                    break;
-                }
-
-                // calculate next candidate destination, check if it's in-bounds and decide the move type
-                candidateDestinationCoordinate += candidateCoordinateOffset;
-                if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                    final Tile candidateDestinationTile = board.getTileAtCoordinate(candidateDestinationCoordinate);
-
-                    if (!candidateDestinationTile.isTileOccupied()) {
-                        // make normal move
-                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-                    } else {
-                        final Piece pieceAtDestination = candidateDestinationTile.getPieceOnTile();
-                        final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
-
-                        if (this.pieceAlliance != pieceAlliance) {
-                            // make attacking move if next tile is occupied by opponent piece
-                            legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
-                        }
-                        break; // stop bishop from moving further after capturing or being blocked by friendly piece
+        for (final Line line : PRECOMPUTED_LEGAL_MOVES.get(this.piecePosition)) {
+            for (final int candidatePosition : line.getLineCoordinates()) {
+                final Piece pieceAtCandidatePosition = board.getPiece(candidatePosition);
+                if (pieceAtCandidatePosition == null) {
+                    legalMoves.add(new Move.MajorMove(board, this, candidatePosition));
+                } else {
+                    if (pieceAtCandidatePosition.getPieceAlliance() != this.pieceAlliance) {
+                        legalMoves.add(new Move.MajorAttackMove(board, this, candidatePosition, pieceAtCandidatePosition));
                     }
+                    break;
                 }
             }
         }

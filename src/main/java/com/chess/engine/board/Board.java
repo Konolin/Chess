@@ -194,6 +194,10 @@ public class Board {
                 Iterables.concat(this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves()));
     }
 
+    public Piece getPiece(final int position) {
+        return this.gameBoard.get(position).getPieceOnTile();
+    }
+
     /**
      * The {@code Builder} class is responsible for constructing instances of the {@code Board} class.
      * It allows for configuring the initial state of the board before creating an immutable {@code Board} instance.

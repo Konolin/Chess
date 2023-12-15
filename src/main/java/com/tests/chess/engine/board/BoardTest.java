@@ -16,7 +16,7 @@ class BoardTest {
     private static int calculatedActivesFor(final Board board, final Alliance alliance) {
         int count = 0;
         for (final Piece p : board.getAllPieces()) {
-            if (p.getPieceAllegiance().equals(alliance)) {
+            if (p.getPieceAlliance().equals(alliance)) {
                 count++;
             }
         }

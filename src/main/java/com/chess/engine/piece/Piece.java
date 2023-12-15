@@ -68,10 +68,6 @@ public abstract class Piece {
         return this.isFirstMove;
     }
 
-    public Alliance getPieceAllegiance() {
-        return this.pieceAlliance;
-    }
-
     /**
      * Enumeration representing different types of chess pieces.
      */
