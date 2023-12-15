@@ -26,7 +26,7 @@ public class Bishop extends Piece {
      * The precomputed legal moves for each tile coordinate on the board.
      * The bishop can move diagonally in any direction, represented by these offsets.
      */
-    private final static Map<Integer, Line[]> PRECOMPUTED_LEGAL_MOVES = initializeLegalMoves();
+    private final static Map<Integer, Line[]> PRECOMPUTED_LEGAL_MOVES = computeLegalMoves();
 
     /**
      * Constructs a Bishop object with the specified alliance and position.
@@ -62,7 +62,7 @@ public class Bishop extends Piece {
      *
      * @return An immutable mapping of tile coordinates to legal moves for the bishop.
      */
-    private static Map<Integer, Line[]> initializeLegalMoves() {
+    private static Map<Integer, Line[]> computeLegalMoves() {
         Map<Integer, Line[]> legalMoves = new HashMap<>();
         for (int position = 0; position < BoardUtils.NUM_TILES; position++) {
             List<Line> lines = new ArrayList<>();

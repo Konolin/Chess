@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tests/chess/engine/board/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tests/chess/engine/board/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Bishop.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Bishop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/King.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/King.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/GameSetup.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/GameSetup.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +227,7 @@
       <workItem from="1694857198444" duration="4533000" />
       <workItem from="1702210416889" duration="9876000" />
       <workItem from="1702377213068" duration="6299000" />
-      <workItem from="1702646654559" duration="5977000" />
+      <workItem from="1702646654559" duration="8238000" />
     </task>
     <servers />
   </component>

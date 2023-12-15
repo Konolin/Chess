@@ -10,13 +10,12 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
-import com.chess.engine.board.Tile;
+import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Getter
 public class King extends Piece {
@@ -25,6 +24,11 @@ public class King extends Piece {
      */
     private final static int[] CANDIDATE_MOVE_COORDINATE = {-9, -8, -7, -1, 1, 7, 8, 9};
 
+    /**
+     * Precomputed legal moves for each tile coordinate on the board.
+     */
+    private final Map<Integer, int[]> PRECOMPUTED_LEGAL_MOVES = computeLegalMoves();
+
     private final boolean kingSideCastleCapable;
     private final boolean queenSideCastleCapable;
     private final boolean isCastled;
@@ -32,10 +36,10 @@ public class King extends Piece {
     /**
      * Constructs a King object with the specified properties.
      *
-     * @param pieceAlliance            The alliance (color) of the king.
-     * @param piecePosition            The current position of the king on the chess board.
-     * @param kingSideCastleCapable    Indicates whether the king can castle on the king side.
-     * @param queenSideCastleCapable   Indicates whether the king can castle on the queen side.
+     * @param pieceAlliance          The alliance (color) of the king.
+     * @param piecePosition          The current position of the king on the chess board.
+     * @param kingSideCastleCapable  Indicates whether the king can castle on the king side.
+     * @param queenSideCastleCapable Indicates whether the king can castle on the queen side.
      */
     public King(final Alliance pieceAlliance, final int piecePosition, final boolean kingSideCastleCapable, final boolean queenSideCastleCapable) {
         super(piecePosition, pieceAlliance, PieceType.KING, true);
@@ -47,12 +51,12 @@ public class King extends Piece {
     /**
      * Constructs a King object with additional properties.
      *
-     * @param pieceAlliance            The alliance (color) of the king.
-     * @param piecePosition            The current position of the king on the chess board.
-     * @param isFirstMove              Indicates whether it is the king's first move.
-     * @param isCastled                Indicates whether the king has already castled.
-     * @param kingSideCastleCapable    Indicates whether the king can castle on the king side.
-     * @param queenSideCastleCapable   Indicates whether the king can castle on the queen side.
+     * @param pieceAlliance          The alliance (color) of the king.
+     * @param piecePosition          The current position of the king on the chess board.
+     * @param isFirstMove            Indicates whether it is the king's first move.
+     * @param isCastled              Indicates whether the king has already castled.
+     * @param kingSideCastleCapable  Indicates whether the king can castle on the king side.
+     * @param queenSideCastleCapable Indicates whether the king can castle on the queen side.
      */
     public King(final Alliance pieceAlliance, final int piecePosition, final boolean isFirstMove, final boolean isCastled, final boolean kingSideCastleCapable, final boolean queenSideCastleCapable) {
         super(piecePosition, pieceAlliance, PieceType.KING, isFirstMove);
@@ -67,6 +71,32 @@ public class King extends Piece {
     }
 
     /**
+     * Initializes and returns a mapping of tile coordinates to legal moves for the king.
+     *
+     * @return An immutable mapping of tile coordinates to legal moves for the king.
+     */
+    private static Map<Integer, int[]> computeLegalMoves() {
+        Map<Integer, int[]> legalMoves = new HashMap<>();
+        for (int position = 0; position < BoardUtils.NUM_TILES; position++) {
+            int[] legalOffsets = new int[CANDIDATE_MOVE_COORDINATE.length];
+            int legalOffsetsLength = 0;
+            for (int offset : CANDIDATE_MOVE_COORDINATE) {
+                if (isFirstOrEighthColumnExclusion(position, offset)) {
+                    continue;
+                }
+                int destination = position + offset;
+                if (BoardUtils.isValidCoordinate(destination)) {
+                    legalOffsets[legalOffsetsLength++] = offset;
+                }
+            }
+            if (legalOffsetsLength > 0) {
+                legalMoves.put(position, Arrays.copyOf(legalOffsets, legalOffsetsLength));
+            }
+        }
+        return ImmutableMap.copyOf(legalMoves);
+    }
+
+    /**
      * Calculates all legal moves for the king on the given chess board.
      *
      * @param board The current chess board.
@@ -76,29 +106,16 @@ public class King extends Piece {
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATE) {
-            final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
-
-            // Jump over the cases where the candidate offset is not valid
-            if (isFirstOrEighthColumnExclusion(this.piecePosition, currentCandidateOffset)) {
-                continue;
-            }
-
-            // Check if the candidate destination is in-bounds
-            if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                final Tile candidateDestinationTile = board.getTileAtCoordinate(candidateDestinationCoordinate);
-
-                if (!candidateDestinationTile.isTileOccupied()) {
-                    // Make a normal move
-                    legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-                } else {
-                    final Piece pieceAtDestination = candidateDestinationTile.getPieceOnTile();
-                    final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
-
-                    if (this.pieceAlliance != pieceAlliance) {
-                        // Make an attacking move if the next tile is occupied by an opponent piece
-                        legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
-                    }
+//        List<Move> castles = board.getWhitePlayer().get
+        
+        for (int offset : PRECOMPUTED_LEGAL_MOVES.get(this.piecePosition)) {
+            final int candidateDestination = this.piecePosition + offset;
+            final Piece pieceAtCandidatePosition = board.getPiece(candidateDestination);
+            if (pieceAtCandidatePosition == null) {
+                legalMoves.add(new Move.MajorMove(board, this, candidateDestination));
+            } else {
+                if (pieceAtCandidatePosition.getPieceAlliance() != this.pieceAlliance) {
+                    legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestination, pieceAtCandidatePosition));
                 }
             }
         }
