@@ -10,7 +10,6 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
-import com.chess.engine.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
@@ -105,9 +104,6 @@ public class King extends Piece {
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
-
-//        List<Move> castles = board.getWhitePlayer().get
-        
         for (int offset : PRECOMPUTED_LEGAL_MOVES.get(this.piecePosition)) {
             final int candidateDestination = this.piecePosition + offset;
             final Piece pieceAtCandidatePosition = board.getPiece(candidateDestination);

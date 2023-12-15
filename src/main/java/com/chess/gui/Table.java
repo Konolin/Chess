@@ -422,7 +422,12 @@ public class Table extends Observable {
 
         private Collection<Move> pieceLegalMoves(final Board board) {
             if (humanMovedPiece != null && humanMovedPiece.getPieceAlliance() == board.getCurrentPlayer().getAlliance()) {
-                return humanMovedPiece.calculateLegalMoves(board);
+                Collection<Move> legalMoves = new ArrayList<>(humanMovedPiece.calculateLegalMoves(board));
+                if (humanMovedPiece.getPieceType() == Piece.PieceType.KING) {
+                    legalMoves.addAll(new ArrayList<>(board.getCurrentPlayer().calculateKingCastles(
+                            board.getCurrentPlayer().getLegalMoves(), board.getCurrentPlayer().getOpponent().getLegalMoves())));
+                }
+                return legalMoves;
             }
             return Collections.emptyList();
         }

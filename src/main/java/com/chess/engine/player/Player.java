@@ -7,6 +7,7 @@ import com.chess.engine.piece.King;
 import com.chess.engine.piece.Piece;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +15,9 @@ import java.util.List;
 
 public abstract class Player {
     protected final Board board;
+    @Getter
     protected final King playerKing;
+    @Getter
     protected final Collection<Move> legalMoves;
     private final boolean isInCheck;
 
@@ -35,14 +38,6 @@ public abstract class Player {
             }
         }
         return ImmutableList.copyOf(attackMoves);
-    }
-
-    public King getPlayerKing() {
-        return this.playerKing;
-    }
-
-    public Collection<Move> getLegalMoves() {
-        return this.legalMoves;
     }
 
     // check is there is a king on the current board and returns him
@@ -105,7 +100,8 @@ public abstract class Player {
         final Board transitionBoard = move.execute();
         // check if there are any attacks on the current players king if the move is made
         // the current player changes after we execute the move => we need to check the opponents king
-        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(transitionBoard.getCurrentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
+        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(
+                transitionBoard.getCurrentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
                 transitionBoard.getCurrentPlayer().getLegalMoves());
 
         // return the same board if there are attacks
@@ -123,5 +119,5 @@ public abstract class Player {
 
     public abstract Player getOpponent();
 
-    protected abstract Collection<Move> calculateKingCastles(Collection<Move> playerLegals, Collection<Move> opponentsLegals);
+    public abstract Collection<Move> calculateKingCastles(Collection<Move> playerLegals, Collection<Move> opponentsLegals);
 }
