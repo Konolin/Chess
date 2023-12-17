@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/BlackPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/BlackPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/MoveTransition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/MoveTransition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/WhitePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/WhitePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/gui/Table$TilePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Knight.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

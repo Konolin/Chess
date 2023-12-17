@@ -11,13 +11,20 @@ import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Knight extends Piece {
+    /**
+     * Array of possible move coordinates for the knight.
+     */
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
+
+    /**
+     * Precomputed legal moves for each tile coordinate on the board.
+     */
+    private final static Map<Integer, int[]> PRECOMPUTED_LEGAL_MOVES = computeLegalMoves();
 
     /**
      * Creates a new {@code Knight} instance with the specified alliance and position.
@@ -59,6 +66,33 @@ public class Knight extends Piece {
     }
 
     /**
+     * Computes the legal moves for each tile coordinate on the board.
+     *
+     * @return An immutable map of tile coordinates to legal moves.
+     */
+    private static Map<Integer, int[]> computeLegalMoves() {
+        Map<Integer, int[]> legalMoves = new HashMap<>();
+        for (int position = 0; position < BoardUtils.NUM_TILES; position++) {
+            int[] legalOffsets = new int[CANDIDATE_MOVE_COORDINATES.length];
+            int legalOffsetsLength = 0;
+            for (int offset : CANDIDATE_MOVE_COORDINATES) {
+                if (isFirstColumnExclusion(position, offset) ||
+                        isSecondColumnExclusion(position, offset) ||
+                        isSeventhColumnExclusion(position, offset) ||
+                        isEighthColumnExclusion(position, offset)) {
+                    continue;
+                }
+                int destination = position + offset;
+                if (BoardUtils.isValidCoordinate(destination)) {
+                    legalOffsets[legalOffsetsLength++] = destination;
+                }
+            }
+            legalMoves.put(position, Arrays.copyOf(legalOffsets, legalOffsetsLength));
+        }
+        return ImmutableMap.copyOf(legalMoves);
+    }
+
+    /**
      * Calculates the legal moves for the knight on the given board.
      *
      * @param board The current state of the chess board.
@@ -67,31 +101,14 @@ public class Knight extends Piece {
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
-
-        for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
-            int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
-
-            if (BoardUtils.isValidCoordinate(candidateDestinationCoordinate)) {
-                // Jump over the cases where the candidate offset is not valid
-                if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                        isSecondColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                        isSeventhColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                        isEighthColumnExclusion(this.piecePosition, currentCandidateOffset)) {
-                    continue;
-                }
-
-                final Tile candidateDestinationTile = board.getTileAtCoordinate(candidateDestinationCoordinate);
-                if (!candidateDestinationTile.isTileOccupied()) {
-                    // Make normal move
-                    legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-                } else {
-                    final Piece pieceAtDestination = candidateDestinationTile.getPieceOnTile();
-                    final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
-
-                    if (this.pieceAlliance != pieceAlliance) {
-                        // Make attacking move if next tile is occupied by opponent piece
-                        legalMoves.add(new Move.MajorAttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
-                    }
+        for (int offset : PRECOMPUTED_LEGAL_MOVES.get(this.piecePosition)) {
+            final int candidatePosition = this.piecePosition + offset;
+            final Piece pieceAtCandidatePosition =  board.getPiece(candidatePosition);
+            if (pieceAtCandidatePosition == null) {
+                legalMoves.add(new Move.MajorMove(board, this, candidatePosition));
+            } else {
+                if (pieceAtCandidatePosition.getPieceAlliance() != this.pieceAlliance) {
+                    legalMoves.add(new Move.MajorAttackMove(board, this, candidatePosition, pieceAtCandidatePosition));
                 }
             }
         }
