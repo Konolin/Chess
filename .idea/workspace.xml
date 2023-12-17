@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/JChess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/JChess.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

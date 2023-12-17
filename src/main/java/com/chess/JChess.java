@@ -11,3 +11,5 @@ public class JChess {
         Table.get().show();
     }
 }
+
+// TODO - make a single place for all sliding piece logic

@@ -101,14 +101,13 @@ public class Knight extends Piece {
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
-        for (int offset : PRECOMPUTED_LEGAL_MOVES.get(this.piecePosition)) {
-            final int candidatePosition = this.piecePosition + offset;
-            final Piece pieceAtCandidatePosition =  board.getPiece(candidatePosition);
+        for (int destination : PRECOMPUTED_LEGAL_MOVES.get(this.piecePosition)) {
+            final Piece pieceAtCandidatePosition =  board.getPiece(destination);
             if (pieceAtCandidatePosition == null) {
-                legalMoves.add(new Move.MajorMove(board, this, candidatePosition));
+                legalMoves.add(new Move.MajorMove(board, this, destination));
             } else {
                 if (pieceAtCandidatePosition.getPieceAlliance() != this.pieceAlliance) {
-                    legalMoves.add(new Move.MajorAttackMove(board, this, candidatePosition, pieceAtCandidatePosition));
+                    legalMoves.add(new Move.MajorAttackMove(board, this, destination, pieceAtCandidatePosition));
                 }
             }
         }
