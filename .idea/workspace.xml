@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/gameStats/V3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/PawnStructureAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bitboards/BitBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitboards/BitBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/JChess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/JChess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/StandardBoardEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/StandardBoardEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Knight.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,6 +230,8 @@
       <workItem from="1702210416889" duration="9876000" />
       <workItem from="1702377213068" duration="6299000" />
       <workItem from="1702646654559" duration="9611000" />
+      <workItem from="1702910916904" duration="6000" />
+      <workItem from="1703075007428" duration="2071000" />
     </task>
     <servers />
   </component>

@@ -92,8 +92,9 @@ public class BitBoard {
     }
 
     private final List<Move> boardLegalMoves;
+    private static BitBoard INSTANCE = new BitBoard();
 
-    public BitBoard() {
+    private BitBoard() {
         whiteRooks = new ChessBitSet();
         whiteRooks.set(56);
         whiteRooks.set(63);
@@ -488,6 +489,10 @@ public class BitBoard {
         return algebraicNotation[c];
     }
 
+    public static BitBoard get() {
+        return INSTANCE;
+    }
+
     public void generateStandardLegalMoves() {
         boardLegalMoves.clear();
         whiteLegalLocations.clear();
@@ -543,7 +548,7 @@ public class BitBoard {
             if (tiles[i] != 0) {
                 result.append(tiles[i]);
             } else {
-                result.append(".");
+                result.append("-");
             }
             result.append(" ");
             if ((i + 1) % 8 == 0) {
@@ -553,7 +558,7 @@ public class BitBoard {
         return result.toString();
     }
 
-    enum Piece {
+    public enum Piece {
         WHITE_KNIGHTS {
             @Override
             public List<Move> calculateLegalMoves() {

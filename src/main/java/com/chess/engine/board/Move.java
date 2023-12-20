@@ -12,6 +12,7 @@
 
 package com.chess.engine.board;
 
+import com.bitboards.BitBoard;
 import com.chess.engine.board.Board.Builder;
 import com.chess.engine.piece.Pawn;
 import com.chess.engine.piece.Piece;
@@ -122,7 +123,10 @@ public abstract class Move {
         final Board.Builder builder = placePieces(new Board.Builder());
         // set the moved piece and change the current move maker
         builder.setPieceAtPosition(this.movedPiece.movePiece(this));
+        BitBoard.Piece.WHITE_KNIGHTS.setBits(this.movedPiece.getPiecePosition());
         builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
+        // print bitboard representation of the board
+        System.out.println(BitBoard.get() + "\n");
         // build the new board and return it
         return builder.build();
     }
