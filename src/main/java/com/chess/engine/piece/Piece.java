@@ -41,6 +41,8 @@ public abstract class Piece {
         return this.pieceType.getPieceValue();
     }
 
+    public abstract int locationBonus();
+
     @Override
     public boolean equals(final Object other) {
         if (this == other) {

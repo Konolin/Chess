@@ -51,7 +51,7 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
     private static int pieceValue(final Player player) {
         int pieceValueScore = 0;
         for (final Piece piece : player.getActivePieces()) {
-            pieceValueScore += piece.getPieceValue();
+            pieceValueScore += piece.getPieceValue() + piece.locationBonus();
         }
         return pieceValueScore;
     }

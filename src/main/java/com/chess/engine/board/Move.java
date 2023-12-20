@@ -125,8 +125,8 @@ public abstract class Move {
         builder.setPieceAtPosition(this.movedPiece.movePiece(this));
         BitBoard.Piece.WHITE_KNIGHTS.setBits(this.movedPiece.getPiecePosition());
         builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
-        // print bitboard representation of the board
-        System.out.println(BitBoard.get() + "\n");
+        // TODO - print bitboard representation of the board
+        // System.out.println(BitBoard.get() + "\n");
         // build the new board and return it
         return builder.build();
     }
@@ -310,11 +310,13 @@ public abstract class Move {
     public static class PawnPromotion extends Move {
         final Move decoratedMove;
         final Pawn promotedPawn;
+        final Piece promotionPiece;
 
-        public PawnPromotion(final Move decoratorMove) {
+        public PawnPromotion(final Move decoratorMove, Piece promotionPiece) {
             super(decoratorMove.getBoard(), decoratorMove.getMovedPiece(), decoratorMove.getDestinationCoordinate());
             this.decoratedMove = decoratorMove;
             this.promotedPawn = (Pawn) decoratedMove.getMovedPiece();
+            this.promotionPiece = promotionPiece;
         }
 
         /**
@@ -344,7 +346,8 @@ public abstract class Move {
 
         @Override
         public String toString() {
-            return "";
+            return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPiecePosition()) + "=";
+                    // + this.promotionPiece.getPieceType(); - TODO - fix this
         }
 
         @Override

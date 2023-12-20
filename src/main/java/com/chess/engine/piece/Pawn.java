@@ -39,7 +39,7 @@ public class Pawn extends Piece {
             // normal move
             if (currentCandidateOffset == 8 && !board.getTileAtCoordinate(candidateDestinationCoordinate).isTileOccupied()) {
                 if (this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
-                    legalMoves.add(new Move.PawnPromotion(new PawnMove(board, this, candidateDestinationCoordinate)));
+                    legalMoves.add(new Move.PawnPromotion(new PawnMove(board, this, candidateDestinationCoordinate), null));
                 } else {
                     legalMoves.add(new PawnMove(board, this, candidateDestinationCoordinate));
                 }
@@ -62,7 +62,7 @@ public class Pawn extends Piece {
 
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         if (this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
-                            legalMoves.add(new Move.PawnPromotion(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate)));
+                            legalMoves.add(new Move.PawnPromotion(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate), null));
                         } else {
                             legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
                         }
@@ -84,7 +84,7 @@ public class Pawn extends Piece {
 
                     if (this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
                         if (this.pieceAlliance.isPawnPromotionSquare(candidateDestinationCoordinate)) {
-                            legalMoves.add(new Move.PawnPromotion(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate)));
+                            legalMoves.add(new Move.PawnPromotion(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate), null));
                         } else {
                             legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
                         }
@@ -111,6 +111,11 @@ public class Pawn extends Piece {
     @Override
     public String toString() {
         return PieceType.PAWN.toString();
+    }
+
+    @Override
+    public int locationBonus() {
+        return this.pieceAlliance.pawnBonus(this.piecePosition);
     }
 
     public Piece getPromotionPiece() {

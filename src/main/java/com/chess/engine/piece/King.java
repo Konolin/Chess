@@ -130,6 +130,12 @@ public class King extends Piece {
     }
 
     @Override
+    public int locationBonus() {
+        // TODO - change to endgame bonus
+        return this.pieceAlliance.kingBonusMiddle(this.piecePosition);
+    }
+
+    @Override
     public String toString() {
         return PieceType.KING.toString();
     }
