@@ -87,6 +87,10 @@ public abstract class Move {
         return false;
     }
 
+    public boolean isPromotingMove() {
+        return false;
+    }
+
     public Piece getAttackedPiece() {
         return null;
     }
@@ -358,6 +362,11 @@ public abstract class Move {
         @Override
         public boolean equals(final Object other) {
             return this == other || other instanceof PawnPromotion && super.equals(other);
+        }
+
+        @Override
+        public boolean isPromotingMove() {
+            return true;
         }
     }
 

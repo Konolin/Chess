@@ -8,6 +8,7 @@ import com.chess.engine.piece.Piece;
 import com.chess.engine.player.MoveTransition;
 import com.chess.engine.player.ai.MiniMax;
 import com.chess.engine.player.ai.MoveStrategy;
+import com.chess.pgn.FenUtilities;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 
@@ -108,11 +109,19 @@ public class Table extends Observable {
 
     private JMenu createFileMenu() {
         final JMenu fileMenu = new JMenu("File");
-        final JMenuItem openPGN = new JMenuItem("Load PGN File");
+        JMenuItem openPGN = new JMenuItem("Load PGN File");
+        openPGN.addActionListener(e -> {
+            String userInput = JOptionPane.showInputDialog(gameFrame, "Enter PGN File Path:");
+            if (userInput != null) {
+                this.chessBoard = FenUtilities.createGameFromFEN(userInput);
+                this.moveLog.clear();
+                this.gameHistoryPanel.redo(chessBoard, moveLog);
+                this.takenPiecesPanel.redo(moveLog);
+                this.boardPanel.drawBoard(chessBoard);
+            }
+        });
 
-        openPGN.addActionListener(e -> System.out.println("open up that pgn file"));
         fileMenu.add(openPGN);
-
         return fileMenu;
     }
 

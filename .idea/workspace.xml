@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ff1ea04-016d-4cd5-9620-3a7c18e26652" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitboards/MyBitBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/Alliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/Alliance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/board/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/piece/Rook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/StandardBoardEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/StandardBoardEvaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/chess/engine/piece/Knight.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/MiniMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/engine/player/ai/MiniMax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/gui/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chess/pgn/FenUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/chess/pgn/FenUtilities.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +228,7 @@
       <workItem from="1702377213068" duration="6299000" />
       <workItem from="1702646654559" duration="9611000" />
       <workItem from="1702910916904" duration="6000" />
-      <workItem from="1703075007428" duration="5301000" />
+      <workItem from="1703075007428" duration="11813000" />
     </task>
     <servers />
   </component>
