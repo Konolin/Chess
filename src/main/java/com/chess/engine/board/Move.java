@@ -129,9 +129,24 @@ public abstract class Move {
         builder.setPieceAtPosition(this.movedPiece.movePiece(this));
         BitBoard.Piece.WHITE_KNIGHTS.setBits(this.movedPiece.getPiecePosition());
         builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
+        builder.setTransitionMove(this);
         // TODO - print bitboard representation of the board
         // System.out.println(BitBoard.get() + "\n");
         // build the new board and return it
+        return builder.build();
+    }
+
+    /**
+     * Executes the current move on the chess board, resulting in a new board state.
+     * The method creates a new board by updating the positions of pieces after the move.
+     * This method is used for testing purposes only.
+     *
+     * @return The new chess board state after executing the move.
+     */
+    public Board undo() {
+        final Board.Builder builder = new Builder();
+        this.board.getAllPieces().forEach(builder::setPieceAtPosition);
+        builder.setMoveMaker(this.board.getCurrentPlayer().getAlliance());
         return builder.build();
     }
 
@@ -303,6 +318,7 @@ public abstract class Move {
             }
             builder.setPieceAtPosition(this.movedPiece.movePiece(this));
             builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
+            builder.setTransitionMove(this);
             return builder.build();
         }
     }
@@ -335,6 +351,7 @@ public abstract class Move {
             final Board.Builder builder = placePieces(new Board.Builder());
             builder.setPieceAtPosition(this.promotedPawn.getPromotionPiece().movePiece(this));
             builder.setMoveMaker(pawnMoveBoard.getCurrentPlayer().getAlliance());
+            builder.setTransitionMove(this);
             return builder.build();
         }
 
@@ -396,6 +413,7 @@ public abstract class Move {
             builder.setPieceAtPosition(movedPawn);
             builder.setEnPassantPawn(movedPawn);
             builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
+            builder.setTransitionMove(this);
             return builder.build();
         }
     }
@@ -441,6 +459,7 @@ public abstract class Move {
             builder.setPieceAtPosition(this.movedPiece.movePiece(this));
             builder.setPieceAtPosition(new Rook(this.castleRook.getPieceAlliance(), this.castleRookDestination, false));
             builder.setMoveMaker(this.board.getCurrentPlayer().getOpponent().getAlliance());
+            builder.setTransitionMove(this);
             return builder.build();
         }
 

@@ -48,8 +48,8 @@ public class MiniMax implements MoveStrategy {
             final MoveTransition moveTransition = board.getCurrentPlayer().makeMove(move);
             if (moveTransition.getMoveStatus().isDone()) {
                 currentValue = board.getCurrentPlayer().getAlliance().isWhite() ?
-                        min(moveTransition.getTransitionBoard(), this.searchDepth - 1, highestSeenValue, Integer.MAX_VALUE) :
-                        max(moveTransition.getTransitionBoard(), this.searchDepth - 1, Integer.MIN_VALUE, lowestSeenValue);
+                        min(moveTransition.getToBoard(), this.searchDepth - 1, highestSeenValue, Integer.MAX_VALUE) :
+                        max(moveTransition.getToBoard(), this.searchDepth - 1, Integer.MIN_VALUE, lowestSeenValue);
                 if (board.getCurrentPlayer().getAlliance().isWhite() && currentValue >= highestSeenValue) {
                     highestSeenValue = currentValue;
                     bestMove = move;
@@ -83,7 +83,7 @@ public class MiniMax implements MoveStrategy {
             final MoveTransition moveTransition = board.getCurrentPlayer().makeMove(move);
             if (moveTransition.getMoveStatus().isDone()) {
                 // execute move and check the next depth level
-                final int currentValue = max(moveTransition.getTransitionBoard(), depth - 1, alpha, beta);
+                final int currentValue = max(moveTransition.getToBoard(), depth - 1, alpha, beta);
                 if (currentValue <= lowestSeenValue) {
                     lowestSeenValue = currentValue;
                 }
@@ -107,7 +107,7 @@ public class MiniMax implements MoveStrategy {
             final MoveTransition moveTransition = board.getCurrentPlayer().makeMove(move);
             if (moveTransition.getMoveStatus().isDone()) {
                 // execute move and check the next depth level
-                final int currentValue = min(moveTransition.getTransitionBoard(), depth - 1, alpha, beta);
+                final int currentValue = min(moveTransition.getToBoard(), depth - 1, alpha, beta);
                 if (currentValue >= highestSeenValue) {
                     highestSeenValue = currentValue;
                 }

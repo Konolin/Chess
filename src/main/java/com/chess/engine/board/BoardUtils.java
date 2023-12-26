@@ -123,4 +123,24 @@ public class BoardUtils {
     public static String getPositionAtCoordinate(final int coordinate) {
         return ALGEBRAIC_NOTATION[coordinate];
     }
+
+    /**
+     * Check if current game is over.
+     * @param board The current board.
+     * @return {@code true} if the game is over, {@code false} otherwise.
+     */
+    public static boolean isEndGame(final Board board) {
+        return board.getCurrentPlayer().isInCheckMate() ||
+                board.getCurrentPlayer().isInStalemate() ||
+                board.getCurrentPlayer().getOpponent().isInCheckMate();
+    }
+
+    /**
+     * Check if the current board is in a state of immediate threat.
+     * @param board The current board.
+     * @return {@code true} if the board is in a state of immediate threat, {@code false} otherwise.
+     */
+    public static boolean isThreatenedBoardImmediate(final Board board) {
+        return board.getWhitePlayer().isInCheck() || board.getBlackPlayer().isInCheck();
+    }
 }

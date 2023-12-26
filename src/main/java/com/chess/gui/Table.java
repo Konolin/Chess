@@ -11,6 +11,7 @@ import com.chess.engine.player.ai.MoveStrategy;
 import com.chess.pgn.FenUtilities;
 import com.google.common.collect.Lists;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -44,6 +45,7 @@ public class Table extends Observable {
     private final GameSetup gameSetup;
     private final Color lightTileColor = new Color(238, 238, 210);
     private final Color darkTileColor = new Color(118, 150, 86);
+    @Setter
     private Board chessBoard;
     private Tile sourceTile;
     private Tile destinationTile;
@@ -95,7 +97,7 @@ public class Table extends Observable {
         return this.gameSetup;
     }
 
-    private Board getGameBoard() {
+    public Board getGameBoard() {
         return this.chessBoard;
     }
 
@@ -257,7 +259,7 @@ public class Table extends Observable {
             try {
                 final Move bestMove = get();
                 Table.get().updateComputerMove(bestMove);
-                Table.get().updateGameBoard(Table.get().getGameBoard().getCurrentPlayer().makeMove(bestMove).getTransitionBoard());
+                Table.get().updateGameBoard(Table.get().getGameBoard().getCurrentPlayer().makeMove(bestMove).getToBoard());
                 Table.get().getMoveLog().addMove(bestMove);
                 Table.get().getGameHistoryPanel().redo(Table.get().getGameBoard(), Table.get().getMoveLog());
                 Table.get().getTakenPiecesPanel().redo(Table.get().moveLog);
@@ -359,7 +361,7 @@ public class Table extends Observable {
                             final Move move = Move.MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(), destinationTile.getTileCoordinate());
                             final MoveTransition transition = chessBoard.getCurrentPlayer().makeMove(move);
                             if (transition.getMoveStatus().isDone()) {
-                                chessBoard = transition.getTransitionBoard();
+                                chessBoard = transition.getToBoard();
                                 moveLog.addMove(move);
                             }
                             sourceTile = null;

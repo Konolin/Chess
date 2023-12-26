@@ -38,6 +38,9 @@ public class Board {
     @Getter
     private final Pawn enPassantPawn;
 
+    @Getter
+    private final Move transitionMove;
+
     /**
      * Constructs a new {@code Board} using the provided {@code Builder}.
      *
@@ -55,6 +58,8 @@ public class Board {
         this.whitePlayer = new WhitePlayer(this, whiteStandardMoves, blackStandardMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardMoves, blackStandardMoves);
         this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
+
+        this.transitionMove = builder.transitionMove != null ? builder.transitionMove : MoveUtils.NULL_MOVE;
     }
 
     /**
@@ -206,6 +211,7 @@ public class Board {
         private final Map<Integer, Piece> boardConfig;
         private Alliance nextMoveMaker;
         private Pawn enPassantPawn;
+        private Move transitionMove;
 
         /**
          * Constructs a new {@code Builder} with an empty board configuration.
@@ -244,6 +250,17 @@ public class Board {
          */
         public Builder setEnPassantPawn(Pawn enPassantPawn) {
             this.enPassantPawn = enPassantPawn;
+            return this;
+        }
+
+        /**
+         * Sets the move that resulted in the current board state.
+         *
+         * @param transitionMove The move that resulted in the current board state.
+         * @return The current builder instance for method chaining.
+         */
+        public Builder setTransitionMove(Move transitionMove) {
+            this.transitionMove = transitionMove;
             return this;
         }
 

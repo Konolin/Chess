@@ -24,7 +24,7 @@ public abstract class Player {
     Player(final Board board, final Collection<Move> legalMoves, final Collection<Move> opponentMoves) {
         this.board = board;
         this.playerKing = establishKing();
-        this.legalMoves = ImmutableList.copyOf(Iterables.concat(legalMoves, calculateKingCastles(legalMoves, opponentMoves)));
+        this.legalMoves = (Collection<Move>) Iterables.concat(legalMoves, calculateKingCastles(legalMoves, opponentMoves));
         this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
     }
 
@@ -93,24 +93,25 @@ public abstract class Player {
     public MoveTransition makeMove(final Move move) {
         // return the same board if move is illegal
         if (!isMoveLegal(move)) {
-            return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
+            return new MoveTransition(this.board, this.board, move, MoveStatus.ILLEGAL_MOVE);
         }
 
         // create a new board with the new move (and switch the current player)
         final Board transitionBoard = move.execute();
         // check if there are any attacks on the current players king if the move is made
         // the current player changes after we execute the move => we need to check the opponents king
-        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(
-                transitionBoard.getCurrentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
-                transitionBoard.getCurrentPlayer().getLegalMoves());
 
         // return the same board if there are attacks
-        if (!kingAttacks.isEmpty()) {
-            return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
+        if (transitionBoard.getCurrentPlayer().getOpponent().isInCheck()) {
+            return new MoveTransition(this.board, this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
         }
 
         // move is legal => return a new MoveTransition with the made move
-        return new MoveTransition(transitionBoard, move, MoveStatus.DONE);
+        return new MoveTransition(this.board, transitionBoard, move, MoveStatus.DONE);
+    }
+
+    public MoveTransition undoMove(final Move move) {
+        return new MoveTransition(this.board, move.undo(), move, MoveStatus.DONE);
     }
 
     public abstract Collection<Piece> getActivePieces();
